@@ -1,0 +1,39 @@
+<?php $_is_enabled = Mage::getStoreConfig('slider/slider_config/enabled'); ?>
+<?php $_box_layout = Mage::getStoreConfig('slider/slider_config/slider_box_layout'); ?>
+<?php $_slider_style = Mage::getStoreConfig('slider/slider_config/slider_style'); ?>
+
+<?php if($_is_enabled) : ?>
+
+<div class="home-slider">
+	<?php if ($_box_layout) : ?>
+		<div class="container">
+	<?php endif; ?>
+
+			<?php echo $this->sliderblock(); ?>
+
+	<?php if ($_box_layout) : ?>
+		</div>
+	<?php endif; ?>
+
+</div>
+
+<?php endif; ?>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+        jQuery('.slider').slick({
+        	autoplay: true,
+        	autoplaySpeed: 2000,
+        	slidesToScroll: 1,
+        	<?php if ($_slider_style == "fade") : ?>
+        	fade: true,
+        	cssEase: 'linear',
+        	<?php endif; ?>
+        	arrows:false
+        });   
+    });
+</script>
+
+
+
+    

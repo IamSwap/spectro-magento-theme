@@ -1,0 +1,33 @@
+
+<script>
+    jQuery(document).ready(function(jQuery){
+    //open popup
+        jQuery('.cd-popup-trigger').on('click', function(event){
+            event.preventDefault();
+            $('.cd-popup').addClass('is-visible');
+        });
+        
+        //close popup
+        jQuery('.cd-popup').on('click', function(event){
+            if( jQuery(event.target).is('.cd-popup-close') || jQuery(event.target).is('.cd-popup') ) {
+                event.preventDefault();
+                jQuery(this).removeClass('is-visible');
+                jQuery('.product-view-data').empty();
+            }
+        });
+        //close popup when clicking the esc keyboard button
+        jQuery(document).keyup(function(event){
+            if(event.which=='27'){
+                jQuery('.cd-popup').removeClass('is-visible');
+                jQuery('.product-view-data').empty();
+            }
+        });
+    });
+
+</script>
+<div class="cd-popup" role="alert">
+    <div class="cd-popup-container">
+        <div style="display:none" class="product-view-data"></div>
+        <a href="#0" class="cd-popup-close img-replace">Close</a>
+    </div> <!-- cd-popup-container -->
+</div> <!-- cd-popup -->

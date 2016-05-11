@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * zeonsolutions inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.zeonsolutions.com/shop/license-enterprise.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * This package designed for Magento ENTERPRISE edition
+ * =================================================================
+ * zeonsolutions does not guarantee correct work of this extension
+ * on any other Magento edition except Magento ENTERPRISE edition.
+ * zeonsolutions does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   Zeon
+ * @package    Zeon_Manufacturer
+ * @version    0.0.1
+ * @copyright  @copyright Copyright (c) 2013 zeonsolutions.Inc. (http://www.zeonsolutions.com)
+ * @license    http://www.zeonsolutions.com/shop/license-enterprise.txt
+ */
+-->
+<config>
+    <tabs>
+        <zextension translate="label">
+            <label>Zeon Extensions</label>
+            <sort_order>200</sort_order>
+        </zextension>
+    </tabs>
+    <sections>
+        <zeon_manufacturer translate="label" module="zeon_manufacturer">
+            <label>Manufacturer</label>
+            <class>separator-top</class>
+            <tab>zextension</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label" module="zeon_manufacturer">
+                    <label>General</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>10</sort_order>
+                    <fields>
+                        <is_enabled translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </is_enabled>
+                    </fields>
+                </general>
+                <frontend translate="label" module="zeon_manufacturer">
+                    <label>Frontend</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <manufacturers_attribute_code translate="label comment">
+                            <label>Manufacturers Attribute Code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </manufacturers_attribute_code>
+                        <meta_title translate="label comment">
+                            <label>Default Meta Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_title>
+                        <meta_keywords translate="label comment">
+                            <label>Default Meta Keywords</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_keywords>
+                        <meta_description translate="label comment">
+                            <label>Default Meta Description</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </meta_description>
+                    </fields>
+                </frontend>
+            </groups>
+        </zeon_manufacturer>
+    </sections>
+</config>

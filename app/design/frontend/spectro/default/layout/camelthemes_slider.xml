@@ -1,0 +1,8 @@
+<layout version="0.1.0">
+     <cms_index_index>
+
+           <reference name="top.menu">
+              <block type="slider/myblock" name="slider_hiddenbrains" template="camelthemes_slider/slider.phtml" after="-" />
+            </reference>
+      </cms_index_index>
+</layout>

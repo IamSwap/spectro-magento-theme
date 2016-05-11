@@ -1,0 +1,126 @@
+.camel-filter .actions {
+    background: transparent;
+    border: 0px;
+}
+.camel-filter .actions a {
+    float: none;
+}
+
+div.camel-filter dd a {padding:0px 5px 0px 0px; display:block; float: left;} 
+
+/*categories*/
+div.camel-filter span.adj-nav-category-current {
+    color: #000;
+} 
+div.camel-filter a.adj-nav-pad2 {padding-left:5px}
+div.camel-filter a.adj-nav-pad3 {padding-left:0px}
+
+/*price ranges*/
+div.camel-filter a.adj-nav-price {}
+div.camel-filter a.adj-nav-price-selected {font-weight: bold}
+
+/*attributes*/
+
+div.camel-filter a.camel_layered_attribute { 
+    background:transparent;
+}
+
+
+div.camel-filter a.camel_layered_attribute_selected {
+    overflow:hidden;
+    color: #000;
+}
+
+
+div.camel-filter a.camel_layered_swatches {padding:0px 0px 5px 0px;}
+div.camel-filter a.camel_layered_swatches_selected {opacity:0.5}
+
+div.camel-filter a.camel_layered_disabled {color:gray; cursor:wait}
+div.camel-filter input.camel_layered_disabled {background-color:gray; border:1px solid gray; cursor:wait}
+
+div.camel-filter a.camel_layered_clear {float: right; cursor:pointer;} 
+
+div.price_slider { 
+    position: relative;
+    z-index: 9;
+    height: 20px;
+    margin: 0 auto 5px auto;
+    background: #eae9e9;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+div.price_slider div.handle { 
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    cursor: move;
+    position: absolute;
+    border-radius: 20px;
+}
+
+#adj-nav-container, div.adj-nav {position:relative}
+
+.camel_loading_filters{
+    width:100%;
+    height:100%;
+    background-color:#fff;
+    z-index:100000;
+    opacity: 0.6;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=20);
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+.camel_loading_filters img{
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left: 50%;
+    margin-left: -60px;
+    top: 50%;
+    margin-top: -60px;
+	z-index:10000001;
+}
+
+.layered-nav div.camel_layered_clear_all {
+    margin:0;
+    border:1px solid #b9ccdd;
+    border-left:0;
+    border-right:0;
+    padding:3px 10px;
+    color:#1f5070;
+    font-weight:bold;
+    font-size:1em;
+    text-align:center;
+} 
+
+.camel-filter dt{
+cursor:pointer;
+}
+.camel-filter dt.camel_layered_dt_selected{}
+
+div.camel-filter dd li{overflow:hidden;}
+
+
+.color { width:150px; clear:both; margin:6px 0 6px 0; }
+
+.color .color_box { width:17px; height:17px; float:left; display:block; margin-right:4px; }
+
+.color a { font-size:13px; color:#333; text-decoration:none; }
+
+.color a:hover { color:#09F; text-decoration:none; }
+
+.color span { font-size:11px; color:#999; }
+
+div.camel-filter .color a.camel_layered_attribute {
+  padding: 0;
+  background: none;
+}
+
+
+.color .color_box {
+  border: 1px solid #e9e9e9;
+}

@@ -1,0 +1,141 @@
+<?php /**
+ * zeonsolutions inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.zeonsolutions.com/shop/license-enterprise.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * This package designed for Magento ENTERPRISE edition
+ * =================================================================
+ * zeonsolutions does not guarantee correct work of this extension
+ * on any other Magento edition except Magento ENTERPRISE edition.
+ * zeonsolutions does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   design
+ * @package    base_default
+ * @version    0.0.1
+ * @copyright  @copyright Copyright (c) 2013 zeonsolutions.Inc. (http://www.zeonsolutions.com)
+ * @license    http://www.zeonsolutions.com/shop/license-enterprise.txt
+ */ ?>
+<?php $_manufacturer = $this->getManufacturer(); ?>
+<?php $processor = Mage::helper('zeon_manufacturer')->getBlockTemplateProcessor(); ?>
+<div class="manufacturer">
+    <div class="page-head"> 
+        <a href="<?php echo $this->getCurrentUrl() ?>" class="right"><img alt="<?php echo $_manufacturer->getManufacturerLogo() ?>" title="<?php echo $_manufacturer->getManufacturerLogo() ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'manufacturer' . '/' . $_manufacturer->getManufacturerLogo() ?>" width="180" ></a>   
+        <h1><?php echo Mage::getModel('zeon_manufacturer/manufacturer')->getManufacturerName($_manufacturer->getManufacturer(), Mage::app()->getStore()->getId()) ?></h1> 
+    </div>
+    <div class="category-view">
+        <div class="clearfix" style="margin-bottom: 1px";>        
+            <?php if ($_manufacturer->getManufacturerBanner()): ?>
+                <p class="category-image">
+                    <a href="#"><img alt="<?php echo $_manufacturer->getManufacturerBanner() ?>" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'manufacturer' . '/' . $_manufacturer->getManufacturerBanner() ?>" height="300" width="700"></a> 
+                </p>
+            <?php endif; ?>        
+            <div id="manufacturer-description" class="category-description">            
+                <?php echo $processor->filter($_manufacturer->getDescription()); ?>
+            </div>
+        </div>
+        <?php //echo $this->getToolbarHtml() ?>
+        <div class="category-products">
+            <?php if (($_products = $this->getProductCollection()) && $_collectionSize = $_products->getSize()): ?>
+
+                <?php if ($this->getMode() != 'grid'): ?>
+
+                    <?php $_iterator = 0; ?>
+                    <ol class="products-list" id="products-list">
+                        <?php foreach ($_products->getItems() as $_product): ?>
+                            <li class="item<?php if (++$_iterator == sizeof($_products->getItems())): ?> last<?php endif; ?>">
+                                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>">
+                                    <img class="product-image" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(94, 120) ?>" width="94" height="120" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+                                </a>
+                                <?php // Product description  ?>
+                                <div class="product-shop">
+                                    <div class="f-fix">
+                                        <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h2>
+                                        <?php if ($_product->getRatingSummary()): ?>
+                                            <?php echo $this->getReviewsSummaryHtml($_product) ?>
+                                        <?php endif; ?>
+                                        <?php echo $this->getPriceHtml($_product, true) ?>
+                                        <div class="desc std">
+                                            <?php echo $_product->getShortDescription() ?>
+                                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+                                        </div>
+                                        <?php if ($_product->isSaleable()): ?>
+                                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span>Add To Cart</span></span></button>
+                                        <?php else: ?>
+                                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                        <?php endif; ?>
+
+                                        <ul class="add-to-links">
+                                            <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                                <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                                            <?php endif; ?>
+                                            <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
+                                                <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                                            <?php endif; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ol>
+
+                <?php else: ?>
+
+                    <?php $_columnCount = $this->getColumnCount(); ?>
+
+                    <div class="products-grid">
+                        <?php foreach ($_products->getItems() as $_product): ?>
+                            <div class="nopadding col-md-3 col-sm-4 col-xs-6">
+                                <div class="item">
+                                    <div class="item-inner">
+                                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>" class="product-image">
+                                            <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(800,1100); ?>"  width="240" height="320" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+                                        </a>
+                                        <div class="actions">
+                                            <?php if ($_product->isSaleable()): ?>
+                                                <?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ) { ?>
+                                                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocationAjax('<?php echo $this->getAddToCartUrl($_product) ?>','<?php echo $_product->getId()?>')"><span><span>Add To Cart</span></span></button>
+                                                    <span id='ajax_loader<?php echo $_product->getId()?>' style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span>
+                                                <?php } else { ?>
+                                                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="showOptions('<?php echo $_product->getId()?>')"><span><span>Add To Cart</span></span></button>
+                                                <?php }  ?>
+                                            <?php else: ?>
+                                                <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                            <?php endif; ?>
+                                            <ul class="add-to-links">
+                                                <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                                    <li><a href="#" onclick='ajaxWishlist("<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>","<?php echo $_product->getId()?>");return false;' class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                                                <?php endif; ?>
+                                                <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
+                                                    <li><span class="separator">|</span> <a href="#" onclick='ajaxCompare("<?php echo $_compareUrl ?>","<?php echo $_product->getId()?>");return false;' class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                                                    <?php endif; ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-bottom">
+                                        <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a></h2>
+                                        <?php if ($_product->getRatingSummary()): ?>
+                                            <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                                        <?php endif; ?>
+                                        <?php echo $this->getPriceHtml($_product, true) ?>                                    
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
+        <div class="toolbar-bottom">
+            <?php echo $this->getToolbarHtml() ?>
+        </div>
+    </div>
+</div>

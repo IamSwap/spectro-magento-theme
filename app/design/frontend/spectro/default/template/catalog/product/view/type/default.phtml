@@ -1,0 +1,16 @@
+<?php $_product = $this->getProduct() ?>
+
+<?php if ($this->displayProductStockStatus()): ?>
+	<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+		<meta itemprop="priceCurrency" content="<?php echo Mage::app()->getStore()->getCurrentCurrencyCode();?>" />
+	    <?php if ($_product->isAvailable()): ?>
+	    	<link  itemprop="availability" href="http://schema.org/InStock">
+	        <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('In stock') ?></span></p>
+	    <?php else: ?>
+	    	<link  itemprop="availability" href="http://schema.org/OutOfStock">
+	        <p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
+	    <?php endif; ?>
+    </div>
+<?php endif; ?>
+<?php echo $this->getChildHtml('product_type_data_extra') ?>
+<?php echo $this->getPriceHtml($_product) ?>

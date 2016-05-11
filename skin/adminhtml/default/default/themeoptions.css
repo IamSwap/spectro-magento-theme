@@ -1,0 +1,17 @@
+span.cm-mainmenu {
+    background: url('camelthemes/camelthemes.png') 0px 4px no-repeat !important;
+    padding: 0 0px 0 25px !important;
+    width: 100% !important;
+    text-transform: none;
+    font-weight: bold;
+    text-shadow: none !important;
+}
+
+span.cm-mainmenu-st {
+    background: url('camelthemes/camelthemes.png') 0px 3px no-repeat !important;
+    color: #333;
+    text-transform: none;
+    padding: 5px 0 5px 24px !important;
+    text-shadow: none !important;
+    text-shadow: 1px 1px #B1BCBD;    
+}

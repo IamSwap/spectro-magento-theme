@@ -1,0 +1,196 @@
+<?php
+    /*
+
+        Footer Fixed Cart
+
+    */
+
+?>
+
+<?php 
+
+    $cart = Mage::getModel('checkout/cart')->getQuote(); 
+
+    //Get total items in cart.
+    $totalItems = $this->helper('checkout/cart')->getSummaryCount();
+
+    $total = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
+    $totalPrice = Mage::helper('checkout')->formatPrice($total); 
+?>
+
+<style>
+
+ .table-row{  
+     display:table-row;
+     text-align: center;
+ }
+ .table-cell{ 
+    display:table-cell;
+    vertical-align: middle;
+    padding: 20px;
+ }
+
+</style>
+
+<div class="minicart">
+    <div class="container">
+        <div class="minicart-inner">
+
+            <div class="minicart-icon">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+
+            <button class="minicart-button"><?php echo $this->__('Checkout'); ?>&nbsp;<?php echo $totalPrice; ?></button>
+
+
+            <div class="minicart-count"><?php if($totalItems) { echo $totalItems; } else { echo "0"; } ?></div>                          
+
+            <div class="minicart-content" role="alert">                    
+
+                    <div class="minicart-container">
+                        <div class="minicart-order-inner">
+
+                            <?php if($totalItems) { ?>
+
+
+                            <table id="shopping-cart-table" class="data-table cart-table">
+                <thead>
+                    <tr class="first last">
+                        <th rowspan="1">&nbsp;</th>
+                        <th rowspan="1"><span class="nobr">Product Name</span></th>
+                        
+                        <th class="a-center" colspan="1"><span class="nobr">Subtotal</span></th>
+                        <th rowspan="1" class="a-center">Qty</th>
+                        <th class="a-center" colspan="1"></th>
+                        
+                    </tr>
+                                    </thead>
+                
+                <tbody>
+                                   
+
+                                
+
+                            
+
+                                <?php
+
+                                    $count = 1;
+
+                                    foreach ($cart->getAllItems() as $item) {
+
+                                        //Get Product
+                                        $_product = $item->getProduct();
+
+                                        //Get Product Id
+                                        $productId = $item->getId();
+
+                                        // Get Product Name
+                                        $productName = $item->getProduct()->getName();
+
+                                        //Get Product Price
+                                        $productPrice = $item->getRowTotalInclTax();
+                                        $productPrice = Mage::helper('checkout')->formatPrice($productPrice);                                        
+                                        
+
+                                        // This will get custom option value of cart item 
+                                        $_customOptions = $item->getProduct()->getTypeInstance(true)->getOrderOptions($item->getProduct());
+
+                                        //delete url
+                                        $_deleteUrl = $this->getUrl('checkout/cart/delete', array('id' => $productId));
+                                        $deleteUrl = $_deleteUrl.'uenc/'.Mage::helper('core')->urlEncode($this->getUrl('checkout/cart'));
+
+                                        $productQuantity = $item->getQty();
+                                ?>
+                            
+                             <tr class="first last odd">
+    <td><a href="http://spectro.dev/simple-products-with-custom-option.html" title="<?php echo $productName ?>" class="product-image"><img src="<?php echo Mage::helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(100,140); ?>" width="100" alt="<?php echo $productName ?>"></a></td>
+    <td>
+         <h2 class="product-name">
+                                            <a href="http://spectro.dev/simple-products-with-custom-option.html"><?php echo $productName ?></a>
+                                        </h2>
+
+                                        <?php if($_customOptions){ ?>
+                                            <dl class="item-options">                                               
+                                                <?php                                                    
+                                                    //custom option loop
+                                                   foreach($_customOptions['options'] as $_option){ 
+                                                ?>
+                                                    <dt><?php echo $_option['label']; ?></dt>
+                                                    <dd><?php echo $_option['value']; ?></dd>
+                                                <?php  } ?>                                             
+                                            </dl>
+                                        <?php } ?>
+            </td>
+    
+    
+                
+        <!-- inclusive price starts here -->
+                <td class="a-center">
+        <input name="cart[138][qty]" value="1" size="4" title="Qty" class="input-text qty" maxlength="12" onchange="ajaxUpdateCart(138);" id="span-138">
+        
+    </td>
+
+    <!--Sub total starts here -->
+        <td class="a-center">
+                    <span class="cart-price">
+        
+                                                <span class="price"><?php echo $productPrice; ?></span>                            
+        </span>
+            </td>
+            <td class="a-center last">
+            <a href="#" onclick="ajaxDeleteItem('<?php echo $deleteUrl; ?>','<?php echo $productId; ?>');return false;" title="Remove item"><i class="fa fa-trash-o"></i></a>
+            </td>
+</tr>    
+
+                                <?php } ?>
+                       
+                       </tbody>
+            </table>
+
+                            <?php } else { ?>
+                                    <h2 class="subtitle"><?php echo $this->__('Empty'); ?> :(</h2>
+                                    <button class="continue-shopping"><?php echo $this->__('Continue Shopping'); ?></button>
+                            <?php } ?>
+
+                        <a class="minicart-close img-replace">Close</a>     
+                        </div><!-- /checkout__order-inner -->
+                    </div><!-- /checkout__order -->
+                </div><!-- /checkout -->
+
+          
+             
+
+        </div>
+    </div>
+     
+</div>
+
+
+<script>
+
+
+
+jQuery(document).ready(function($){
+    //open popup
+    jQuery('.minicart-button').on('click', function(event){
+        event.preventDefault();
+        $('.minicart-content').addClass('is-visible');
+    });
+    
+    //close popup
+    jQuery('.minicart-content').on('click', function(event){
+        if( jQuery(event.target).is('.minicart-close') || jQuery(event.target).is('.minicart-content') || jQuery(event.target).is('.continue-shopping') ) {
+            event.preventDefault();
+            jQuery(this).removeClass('is-visible');
+        }
+    });
+    //close popup when clicking the esc keyboard button
+    jQuery(document).keyup(function(event){
+        if(event.which=='27'){
+            jQuery('.minicart-content').removeClass('is-visible');
+        }
+    });
+});
+
+</script>

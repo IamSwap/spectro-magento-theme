@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <myconf translate="label">
+            <label>Spectro Settings</label>
+            <sort_order>150</sort_order>
+        </myconf>
+    </tabs>
+
+    <sections>
+        <ajax translate="label" module="ajax">
+            <label>Ajax Configurations</label>
+            <tab>myconf</tab>
+            <sort_order>20</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>Ajax Configuration</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>2</sort_order>
+                    <fields>
+                        <enable translate="label">
+                            <label>Enable Ajax Cart</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>1</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable using Ajax cart</comment>
+                        </enable>
+                        <update_blocks translate="label">
+                            <label>XML of update blocks</label>
+                            <comment>insert HTML parent tag ID of block to be updated</comment>
+                            <frontend_model>ajax/adminhtml_url</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </update_blocks>
+                    </fields>
+                </general>
+                <ajax_messages translate="label">
+                    <label>Ajax Messages</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>3</sort_order>
+                    <fields>                        
+                        <removecompare_heading translate="label">
+                            <label>Compare Products Popup</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </removecompare_heading>
+
+                        <removecompare_title translate="label comment">
+                            <label>Popup Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </removecompare_title>
+                        <removecompare_text translate="label comment">
+                            <label>Popup Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </removecompare_text>
+                        <removecompare_confirmbuttontext translate="label comment">
+                            <label>Popup Confirm Button Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </removecompare_confirmbuttontext>
+                        <removecompare_cancelbuttontext translate="label comment">
+                            <label>Popup Cancel Button Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </removecompare_cancelbuttontext>
+                        <removecompare_cancelledtext translate="label comment">
+                            <label>Popup Cancelled Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </removecompare_cancelledtext>
+
+
+                        <ajaxclearcart_heading translate="label">
+                            <label>Clear Cart Popup</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ajaxclearcart_heading>
+
+                        <ajaxclearcart_title translate="label comment">
+                            <label>Popup Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxclearcart_title>
+                        <ajaxclearcart_text translate="label comment">
+                            <label>Popup Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxclearcart_text>
+                        <ajaxclearcart_confirmbuttontext translate="label comment">
+                            <label>Popup Confirm Button Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxclearcart_confirmbuttontext>
+                        <ajaxclearcart_cancelbuttontext translate="label comment">
+                            <label>Popup Cancel Button Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxclearcart_cancelbuttontext>
+                        <ajaxclearcart_cancelledtext translate="label comment">
+                            <label>Popup Cancelled Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxclearcart_cancelledtext>
+
+
+                        <ajaxdeleteitem_heading translate="label">
+                            <label>Delete Cart Item Popup</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ajaxdeleteitem_heading>
+
+                        <ajaxdeleteitem_title translate="label comment">
+                            <label>Popup Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxdeleteitem_title>
+                        <ajaxdeleteitem_text translate="label comment">
+                            <label>Popup Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxdeleteitem_text>
+                        <ajaxdeleteitem_confirmbuttontext translate="label comment">
+                            <label>Popup Confirm Button Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxdeleteitem_confirmbuttontext>
+                        <ajaxdeleteitem_cancelbuttontext translate="label comment">
+                            <label>Popup Cancel Button Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxdeleteitem_cancelbuttontext>
+                        <ajaxdeleteitem_cancelledtext translate="label comment">
+                            <label>Popup Cancelled Text</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxdeleteitem_cancelledtext>
+
+
+                        <ajaxcoupon_heading translate="label">
+                            <label>Discount Popup</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </ajaxcoupon_heading>
+
+                        <ajaxcoupon_emptytext translate="label comment">
+                            <label>Empty Text Notice</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ajaxcoupon_emptytext>
+
+                    </fields> 
+                </ajax_messages>
+            </groups>
+        </ajax>
+    </sections>
+</config>

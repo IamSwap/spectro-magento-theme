@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * zeonsolutions inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.zeonsolutions.com/shop/license-enterprise.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * This package designed for Magento ENTERPRISE edition
+ * =================================================================
+ * zeonsolutions does not guarantee correct work of this extension
+ * on any other Magento edition except Magento ENTERPRISE edition.
+ * zeonsolutions does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   Zeon
+ * @package    Zeon_Manufacturer
+ * @version    0.0.1
+ * @copyright  @copyright Copyright (c) 2013 zeonsolutions.Inc. (http://www.zeonsolutions.com)
+ * @license    http://www.zeonsolutions.com/shop/license-enterprise.txt
+ */
+-->
+<config>
+    <modules>
+        <Zeon_Manufacturer>
+            <version>0.1.0</version>
+        </Zeon_Manufacturer>
+    </modules>
+    <frontend>
+        <routers>
+            <manufacturer>
+                <use>standard</use>
+                <args>
+                    <module>Zeon_Manufacturer</module>
+                    <frontName>manufacturers</frontName>
+                </args>
+            </manufacturer>
+        </routers>
+        <layout>
+            <updates>
+                <manufacturer>
+                    <file>zeon_manufacturer.xml</file>
+                </manufacturer>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Zeon_Manufacturer>
+                    <files>
+                        <default>Zeon_Manufacturer.csv</default>
+                    </files>
+                </Zeon_Manufacturer>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+         <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <zeon_manufacturer before="Mage_Adminhtml">Zeon_Manufacturer_Adminhtml</zeon_manufacturer>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <zeon_manufacturer module="Zeon_Manufacturer">
+                    <file>zeon_manufacturer.xml</file>
+                </zeon_manufacturer>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Zeon_Manufacturer>
+                    <files>
+                        <default>Zeon_Manufacturer.csv</default>
+                    </files>
+                </Zeon_Manufacturer>
+            </modules>
+        </translate>
+    </adminhtml>
+    <global>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <manufacturer>
+                        <class>Zeon_Manufacturer_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </manufacturer>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+        <models>
+            <zeon_manufacturer>
+                <class>Zeon_Manufacturer_Model</class>
+                <resourceModel>zeon_manufacturer_mysql4</resourceModel>
+            </zeon_manufacturer>
+            <zeon_manufacturer_mysql4>
+                <class>Zeon_Manufacturer_Model_Mysql4</class>
+                <entities>
+                    <manufacturer>
+                        <table>zeon_manufacturer</table>
+                    </manufacturer>
+                    <store>
+                        <table>zeon_manufacturer_store</table>
+                    </store>
+                </entities>
+            </zeon_manufacturer_mysql4>
+        </models>
+        <helpers>
+            <zeon_manufacturer>
+                <class>Zeon_Manufacturer_Helper</class>
+            </zeon_manufacturer>
+        </helpers>
+        <blocks>
+            <zeon_manufacturer>
+                <class>Zeon_Manufacturer_Block</class>
+            </zeon_manufacturer>
+        </blocks>
+        <resources>
+            <zeon_manufacturer_setup>
+                <setup>
+                    <module>Zeon_Manufacturer</module>
+                    <class>Zeon_Manufacturer_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </zeon_manufacturer_setup>
+            <zeon_manufacturer_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </zeon_manufacturer_write>
+            <zeon_manufacturer_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </zeon_manufacturer_read>
+        </resources>
+    </global>
+    <default>
+        <zeon_manufacturer>
+            <general>
+                <is_enabled>1</is_enabled>
+            </general>
+        </zeon_manufacturer>
+    </default>
+</config>

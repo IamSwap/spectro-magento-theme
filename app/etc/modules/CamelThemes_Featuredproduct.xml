@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CamelThemes_Featuredproduct>
+            <active>true</active>
+            <codePool>community</codePool>
+        </CamelThemes_Featuredproduct>
+    </modules>
+</config> 

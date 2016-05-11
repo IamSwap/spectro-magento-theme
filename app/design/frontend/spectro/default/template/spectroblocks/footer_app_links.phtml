@@ -1,0 +1,25 @@
+<?php
+	$_enabled = Mage::getStoreConfig('tab1/main_options/enable_app_links');
+	$_apple = Mage::getStoreConfig('tab1/main_options/app_apple');
+	$_android = Mage::getStoreConfig('tab1/main_options/app_android');
+	$_windows = Mage::getStoreConfig('tab1/main_options/app_windows');
+
+	$app_links = array();
+
+?>
+
+<?php if($_apple) { array_push($app_links, '<a href="'.$_apple.'"><i class="fa fa-apple"></i></a>'); } ?>
+<?php if($_android) { array_push($app_links, '<a href="'.$_android.'"><i class="fa fa-android"></i></a>'); } ?>
+<?php if($_windows) { array_push($app_links, '<a href="'.$_windows.'"><i class="fa fa-windows"></i></a>'); } ?>
+
+<?php if($_enabled) : ?>
+
+<ul class="app-links">
+	<li><span><?php echo $this->__('Checkout our Apps'); ?>:</span></li>
+	<?php $i=0; $len = count($app_links); ?>
+	<?php foreach ($app_links as $applink) : ?>
+		<li <?php $i++; if ($i == $len){echo 'class="last"';} ?>><?php echo $applink; ?></li>
+	<?php endforeach; ?>	
+</ul>
+
+<?php endif; ?>

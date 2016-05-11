@@ -1,0 +1,101 @@
+<?php
+		function cut_string($string,$number){
+			if(strlen($string) <= $number) {
+				return $string;
+			}
+			else {	
+				if(strpos($string," ",$number) > $number){
+					$new_space = strpos($string," ",$number);
+					$new_string = substr($string,0,$new_space)."..";
+					return $new_string;
+				}
+				$new_string = substr($string,0,$number)."..";
+				return $new_string;
+			}
+		}
+	?>
+<?php if($this->getConfig('enabled')){ // start enable module?> 
+<div class="featured-products">
+	<?php $this->getProducts() ?>
+	<?php $_productCollection=$this->getProductCollection() ?>
+	
+	<?php if($this->getConfig('title')){?>			
+		<h2 class="subtitle"><?php echo $this->getConfig('title')?></h2>
+	<?php }?>
+
+	<div class="products-grid row">
+		<?php if(!$_productCollection->count()): ?> <!-- start if exist product -->
+			<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+		<?php else: ?>
+
+		    <?php $_collectionSize = $_productCollection->count() ?>
+			    <?php if( !$this->getConfig('items') ) { $_columnCount = 1 ; } else { $_columnCount = $this->getConfig('items'); }?>
+			    <div class="featuredproduct-slider">
+			    <?php $i=0; foreach ($_productCollection as $_product): ?>
+			        <div class="nopadding col-md-3 col-sm-3 col-xs-6">
+            			<div class="item">             			
+							<div class="item-inner">
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>" class="product-image"><img src="<?php echo $this->getSkinUrl(); ?>/images/loading.gif" data-src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(300,300) ?>" data-src-retina="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(500,500) ?>" width="240" height="320"  alt="<?php echo $this->escapeHtml($_product->getName()) ?>" class="lazy-load" /></a>
+			                    <div class="actions">
+			                        <?php if($_product->isSaleable()): ?>
+			                            <?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ) { ?>
+			                                <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocationAjax('<?php echo $this->getAddToCartUrl($_product) ?>','<?php echo $_product->getId()?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+			                                <span id='ajax_loader<?php echo $_product->getId()?>' style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span>
+			                            <?php } else { ?>
+			                                <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="showOptions('<?php echo $_product->getId()?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+			                            <?php }  ?>
+			                        <?php else: ?>
+			                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+			                        <?php endif; ?>
+			                        <ul class="add-to-links">
+			                                <?php if ($this->helper('wishlist')->isAllow()) : ?>
+			                                    <li><a href="#" onclick='ajaxWishlist("<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>","<?php echo $_product->getId()?>");return false;' class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+			                                <?php endif; ?>
+			                                <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+			                                    <li><span class="separator">|</span> <a href="#" onclick='ajaxCompare("<?php echo $_compareUrl ?>","<?php echo $_product->getId()?>");return false;' class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+			                                <?php endif; ?>
+			                        </ul>
+			                    </div>								
+							</div>
+							<div class="product-bottom">
+			                    <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></h3>
+			                    <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+			                    <?php echo $this->getPriceHtml($_product, true, '-new') ?>
+			                </div>    
+			            </div>
+			       	</div>
+			       	<?php $i++; if($i == $this->getConfig('qty')){ break; } ?>
+		        <?php endforeach ?>
+		        </div>
+		        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>				
+			</div>		
+		<?php endif; ?> <!-- end exist product -->
+	</div> <!-- end products list -->
+</div>
+<?php } ?>
+
+
+<script type="text/javascript">
+    jQuery('.featuredproduct-slider').slick({
+    	autoplay: <?php echo $this->getConfig('autoplay'); ?>,
+    	autoplaySpeed: <?php echo $this->getConfig('autoplayspeed'); ?>,
+        infinite: <?php echo $this->getConfig('infinite'); ?>,
+        slidesToShow: <?php echo $this->getConfig('slidestoshow'); ?>,
+        slidesToScroll: <?php echo $this->getConfig('slidestoscroll'); ?>,
+        responsive: [
+            {
+              breakpoint: 992,
+              settings: {
+                slidesToShow: 3
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2
+              }
+            }
+        ]
+    });
+                
+</script>

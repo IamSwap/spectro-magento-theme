@@ -1,0 +1,115 @@
+<?php 
+
+    $cart = Mage::getModel('checkout/cart')->getQuote(); 
+
+    //Get total items in cart.
+    $totalItems = $this->helper('checkout/cart')->getSummaryCount();
+
+    $total = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
+    $totalPrice = Mage::helper('checkout')->formatPrice($total); 
+?>
+<div class="minicart">
+    <div class="container">
+        <div class="minicart-inner">
+
+            <div class="minicart-icon">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+
+            <button class="minicart-button"><?php echo $this->__('My Cart'); ?>&nbsp;<?php echo $totalPrice; ?></button>
+
+
+            <div class="minicart-count"><?php if($totalItems) { echo $totalItems; } else { echo "0"; } ?></div>                          
+
+            <div class="minicart-content">
+                <div class="minicart-container">
+                    
+
+                    <div class="minicart-order-inner">
+                        <?php 
+                            
+                            $_items =  $this->getRecentItems();
+                         ?>
+                            
+                            <?php if (count($_items)): ?>
+
+                                <div class="minicart-slider">
+
+                                    <?php $i = 1; ?>
+
+                                    <?php foreach ($_items as $_item): ?>
+
+                                        <?php if ($i%2 == 1) { echo "<ul>"; } ?>
+
+                                            <?php echo $this->getItemHtml($_item); ?>
+
+                                        <?php if ($i%2 == 0) { echo "</ul>"; } $i++; ?>
+
+                                    <?php endforeach; ?>
+                                    <?php if ($i%2 != 1) { echo "</ul>"; } ?>
+                                </div>
+                                
+                                <script type="text/javascript">
+                                /*
+                                    jQuery(document).ready(function() {
+                                        jQuery('.minicart-slider').slick({
+                                            infinate: false,
+                                            slidesToScroll: 1,
+                                            arrows: true
+                                        });   
+                                    });
+                                */
+                                </script>
+                                <div class="minicart-bottom">
+                                    <div class="minicart-totals"><?php echo $totalPrice; ?></div>
+                                    <button class="checkout"  onClick="location.href='<?php echo $this->getUrl('checkout/cart'); ?>'"><?php echo $this->__('View Cart'); ?></button>
+                                </div>
+                                
+                               
+                                <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+                            <?php else: ?>
+                                <h2 class="subtitle"><?php echo $this->__('Empty'); ?> :(</h2>
+                                    
+                                <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+                                <button class="continue-shopping"><?php echo $this->__('Continue Shopping'); ?></button>
+                            <?php endif ?>         
+                        <a class="minicart-close img-replace">Close</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+jQuery(document).ready(function($){
+    //open popup
+    jQuery('.minicart-button').on('click', function(event){
+        event.preventDefault();
+        $('.minicart-content').addClass('is-visible');
+        jQuery(".fixed-header").hide();
+    });
+    
+    //close popup
+    jQuery('.minicart-content').on('click', function(event){
+        if( jQuery(event.target).is('.minicart-close') || jQuery(event.target).is('.minicart-content') || jQuery(event.target).is('.continue-shopping') ) {
+            event.preventDefault();
+            jQuery(this).removeClass('is-visible');
+            jQuery(".fixed-header").show();
+        }
+    });
+    //close popup when clicking the esc keyboard button
+    jQuery(document).keyup(function(event){
+        if(event.which=='27'){
+            jQuery('.minicart-content').removeClass('is-visible');
+            jQuery(".fixed-header").show();
+        }
+    });
+
+
+});
+
+</script>

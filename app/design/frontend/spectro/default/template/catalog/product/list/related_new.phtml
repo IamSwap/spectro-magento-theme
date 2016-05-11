@@ -1,0 +1,93 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php 
+    //Get store config
+    $_enabled = Mage::getStoreConfig('featuredproduct/relatedproduct_config/enabled');
+    $_title = Mage::getStoreConfig('featuredproduct/relatedproduct_config/title');
+    $_qty = Mage::getStoreConfig('featuredproduct/relatedproduct_config/qty');
+    $_autoplay = Mage::getStoreConfig('featuredproduct/relatedproduct_config/autoplay');
+    $_autoplayspeed = Mage::getStoreConfig('featuredproduct/relatedproduct_config/autoplayspeed');
+    $_infinite = Mage::getStoreConfig('featuredproduct/relatedproduct_config/infinite');
+    $_slidestoshow = Mage::getStoreConfig('featuredproduct/relatedproduct_config/slidestoshow');
+    $_slidestoscroll = Mage::getStoreConfig('featuredproduct/relatedproduct_config/slidestoscroll');
+?>
+<?php if($_enabled): ?>
+<?php if($this->getItems()->getSize()): ?>
+<div class="box-collateral box-related">
+    <h2><?php echo $_title; ?></h2>
+    <div class="products-grid">
+    <div class="related-products-slider">
+        <?php $i=0; foreach($this->getItems() as $_item): ?>
+                    <div class="item">
+                        <div class="product">
+                            <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(800,800) ?>"  width="240" height="320" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" /></a>
+                            <div class="product-details">
+                                <h2 class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a></h2>
+                                <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                                <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                   <!-- <a href="<?php echo $this->getAddToWishlistUrl($_item) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a> -->
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+        <?php $i++; if($i == $_qty){ break; } ?>
+        <?php endforeach ?>
+    </div>
+    <script type="text/javascript">    
+        jQuery(document).ready(function() {
+            jQuery(".related-products-slider").slick({
+                autoplay: <?php echo $_autoplay; ?>,
+                autoplaySpeed: <?php echo $_autoplayspeed; ?>,
+                infinite: <?php echo $_infinite; ?>,
+                slidesToShow: <?php echo $_slidestoshow; ?>,
+                slidesToScroll: <?php echo $_slidestoscroll; ?>,
+                responsive: [
+                    {
+                      breakpoint: 1170,
+                      settings: {
+                        slidesToShow: 4
+                      }
+                    },
+                    {
+                      breakpoint: 768,
+                      settings: {
+                        slidesToShow: 3
+                      }
+                    },
+                    {
+                      breakpoint: 480,
+                      settings: {
+                        slidesToShow: 2
+                      }
+                    }
+                ]
+            }); 
+          });
+    </script>
+</div>
+<?php endif ?>
+<?php endif;?>

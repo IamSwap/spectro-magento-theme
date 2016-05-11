@@ -1,0 +1,125 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Cart cross sell items template
+ *
+ * @see Mage_Checkout_Block_Cart_Crosssell
+ */
+?>
+
+<?php 
+    //Get store config
+    $_enabled = Mage::getStoreConfig('featuredproduct/crosssellproduct_config/enabled');
+    $_title = Mage::getStoreConfig('featuredproduct/crosssellproduct_config/title');
+    $_qty = Mage::getStoreConfig('featuredproduct/crosssellproduct_config/qty');
+    $_autoplay = Mage::getStoreConfig('featuredproduct/crosssellproduct_config/autoplay');
+    $_autoplayspeed = Mage::getStoreConfig('featuredproduct/crosssellproduct_config/autoplayspeed');
+    $_infinite = Mage::getStoreConfig('featuredproduct/crosssellproduct_config/infinite');
+    $_slidestoshow = Mage::getStoreConfig('featuredproduct/crosssellproduct_config/slidestoshow');
+    $_slidestoscroll = Mage::getStoreConfig('featuredproduct/crosssellproduct_config/slidestoscroll');
+?>
+<?php if($_enabled): ?>
+<?php if($this->getItemCount()): ?>
+
+    <h1><?php echo $_title; ?></h1>
+    <div id="crosssell-products-list" class="products-grid row">
+        <div class="crosssell-products-slider">
+        <?php $i=1; foreach ($this->getItems() as $_item): ?>
+            <div class="slide">
+                <div class="item">
+                    <div class="item-inner">
+                        <a class="product-image" href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(800,1100); ?>"  width="240" height="320"  alt="<?php echo $this->escapeHtml($_item->getName()) ?>" /></a>
+                        <div class="actions">
+                            <?php if($_item->isSaleable()): ?>
+                                <?php if ( !($_item->getTypeInstance(true)->hasRequiredOptions($_item) || $_item->isGrouped()) ) { ?>
+                                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocationAjax('<?php echo $this->getAddToCartUrl($_item) ?>','<?php echo $_item->getId()?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                                    <span id='ajax_loader<?php echo $_item->getId()?>' style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span>
+                                <?php } else { ?>
+                                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="showOptions('<?php echo $_item->getId()?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                                     <a href='<?php echo $this->getUrl('ajax/index/options',array('product_id'=>$_item->getId()));?>' class='fancybox' id='fancybox<?php echo $_item->getId()?>' style='display:none'>Test</a>
+                                <?php }  ?>
+                            <?php else: ?>
+                                <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                            <?php endif; ?>
+                            <ul class="add-to-links">
+                                <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                    <li><a href="#" onclick='ajaxWishlist("<?php echo $this->helper('wishlist')->getAddUrl($_item) ?>","<?php echo $_item->getId()?>");return false;' class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                                <?php endif; ?>
+                                <?php if($_compareUrl=$this->getAddToCompareUrl($_item)): ?>
+                                    <li><span class="separator">|</span> <a href="#" onclick='ajaxCompare("<?php echo $_compareUrl ?>","<?php echo $_item->getId()?>");return false;' class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                                <?php endif; ?>
+                               <span id='ajax_loading<?php echo $_item->getId()?>' style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-bottom">                   
+                        <h2 class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a></h2>
+                        <?php echo $this->getPriceHtml($_item, true) ?>
+                    </div>
+                    
+                </div>
+            </div>
+            <?php $i++; if($i == $_qty) {break;} ?>
+        <?php endforeach; ?>
+        </div>
+    </div>
+    <script type="text/javascript">decorateList('crosssell-products-list', 'none-recursive')</script>
+
+    <script type="text/javascript">    
+        jQuery(document).ready(function() {
+            jQuery(".crosssell-products-slider").slick({
+                autoplay: <?php echo $_autoplay; ?>,
+                autoplaySpeed: <?php echo $_autoplayspeed; ?>,
+                infinite: <?php echo $_infinite; ?>,
+                slidesToShow: <?php echo $_slidestoshow; ?>,
+                slidesToScroll: <?php echo $_slidestoscroll; ?>,
+                responsive: [
+                    {
+                      breakpoint: 1170,
+                      settings: {
+                        slidesToShow: 4
+                      }
+                    },
+                    {
+                      breakpoint: 768,
+                      settings: {
+                        slidesToShow: 3
+                      }
+                    },
+                    {
+                      breakpoint: 480,
+                      settings: {
+                        slidesToShow: 2
+                      }
+                    }
+                ]
+            }); 
+          });
+    </script>
+<?php endif; ?>
+<?php endif;?>

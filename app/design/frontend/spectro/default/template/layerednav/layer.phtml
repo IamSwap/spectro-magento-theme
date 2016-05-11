@@ -1,0 +1,71 @@
+<?php
+/*
+ * Adding javascript include
+ */
+if ('front' != Mage::app()->getRequest()->getControllerName()) {
+    ?>
+    <!-- script type="text/javascript" src="<?php echo $this->getSkinUrl(); ?>js/FME/camel_layered_nav.js"></script --> 
+    <?php
+}
+?>
+
+<?php if ($this->canShowBlock()): $state = $this->getStateInfo() ?>
+    <div class="block block-layered-nav">
+        <div class="block-title">
+            <strong><span><?php echo $this->__('Shop by') ?></span></strong>
+        </div>
+        <a href="#" class="filter-close-btn"><?php echo $this->__('Close'); ?></a>
+        <div class="block-content">
+            <?php echo $this->getStateHtml() ?>
+            <?php if ($this->canShowOptions()): ?>
+                <?php
+                //echo "<pre>";
+                //print_r($state);
+                ?>
+                <div class="camel-filter">
+                    <input type="hidden" id="camel_layered_url" value="<?php echo $this->htmlEscape($state[0]) ?>"/>
+                    <input type="hidden" id="camel_layered_params" value="<?php echo $this->htmlEscape($state[1]) ?>"/> 
+                    <input type="hidden" id="camel_layered_ajax" value="<?php echo $this->htmlEscape($state[2]) ?>"/> 
+                    <dl id="camel_filters_list">
+                        <?php if ($state[1] AND $this->bNeedClearAll()): ?>
+                            <div class="actions camel_layered_clear_all"><a class="camel_layered_clearall" href="<?php echo $this->htmlEscape($this->getClearAllUrl()) ?>"><?php echo $this->__('Clear All') ?></a></div>            
+                        <?php endif ?>
+
+                        <?php $_filters = $this->getFilters() ?>
+                        <?php foreach ($_filters as $_filter): ?>
+                            <?php if ($_filter->getItemsCount()): ?>
+                                <dt class="camel_layered_dt">
+                                <?php if ($clearUrl = $_filter->getClearUrl()): ?>
+                                    <a id="<?php echo $_filter->getVar() ?>-clear" <?php if (!$this->getIsRemoveLinks()): ?>href="<?php echo $this->htmlEscape($clearUrl) ?>" <?php endif; ?> class="btn-remove camel_layered_clear" title="<?php echo $this->__('Remove This Item') ?>"><?php echo $this->__('Remove This Item') ?></a>
+                                <?php endif ?>
+                                <?php echo $this->__($_filter->getName()) ?>
+                                </dt>
+                                <dd <?php echo $this->getHeightStyle() ?> id="camel_layered_<?php echo $_filter->getVar() ?>"><?php echo $_filter->getHtml() ?></dd>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </dl>
+                    <script type="text/javascript">
+                        decorateDataList('narrow-by-list');
+                        camel_layered_init();
+                    </script>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="camel_loading_filters" style="display:none"></div>
+    </div>
+<?php endif; ?>
+
+<script type="text/javascript">
+    camel_layered_init();
+</script>
+
+
+
+
+
+
+
+
+
+
+

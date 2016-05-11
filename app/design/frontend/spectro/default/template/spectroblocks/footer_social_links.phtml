@@ -1,0 +1,29 @@
+<?php
+	$_enabled = Mage::getStoreConfig('tab1/main_options/enable_social_links');
+	$_facebook = Mage::getStoreConfig('tab1/main_options/social_facebook');
+	$_twitter = Mage::getStoreConfig('tab1/main_options/social_twitter');
+	$_youtube = Mage::getStoreConfig('tab1/main_options/social_youtube');
+	$_google = Mage::getStoreConfig('tab1/main_options/social_google');
+	$_pinterest = Mage::getStoreConfig('tab1/main_options/social_pinterest');
+
+	$social_links = array();
+
+?>
+
+<?php if($_facebook) { array_push($social_links, '<a href="'.$_facebook.'"><i class="fa fa-facebook"></i></a>'); } ?>
+<?php if($_twitter) { array_push($social_links, '<a href="'.$_twitter.'"><i class="fa fa-twitter"></i></a>'); } ?>
+<?php if($_youtube) { array_push($social_links, '<a href="'.$_youtube.'"><i class="fa fa-youtube-play"></i></a>'); } ?>
+<?php if($_google) { array_push($social_links, '<a href="'.$_google.'"><i class="fa fa-google-plus"></i></a>'); } ?>
+<?php if($_pinterest) { array_push($social_links, '<a href="'.$_pinterest.'"><i class="fa fa-pinterest"></i></a>'); } ?>
+
+<?php if($_enabled) : ?>
+
+<ul class="footer-social">
+
+	<?php $i=0; $len = count($social_links); ?>
+	<?php foreach ($social_links as $sociallink) : ?>
+		<li <?php $i++; if ($i == $len){echo 'class="last"';} ?>><?php echo $sociallink; ?></li>
+	<?php endforeach; ?>	
+</ul>
+
+<?php endif; ?>

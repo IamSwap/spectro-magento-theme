@@ -1,0 +1,53 @@
+
+
+
+<table cellspacing="0" class="data-table" id="checkout-review-table">
+    <?php if ($this->helper('tax')->displayCartBothPrices()): $colspan = $rowspan = 2; else: $colspan = $rowspan = 1; endif; ?>
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th rowspan="<?php echo $rowspan ?>"><?php echo $this->__('Product Name') ?></th>
+            <th class="a-center" rowspan="<?php echo $rowspan ?>" width="5%"><?php echo $this->__('Qty') ?></th>
+            <th class="a-center" colspan="<?php echo $colspan ?>" width="10%"><?php echo $this->__('Subtotal') ?></th>
+        </tr>
+        <?php //if ($this->helper('tax')->displayCartBothPrices()):?>
+        <!--<tr>
+            <th class="a-center"><?php //echo $this->__('Excl. Tax'); ?></th>
+            <th class="a-center"><?php //echo $this->__('Incl. Tax'); ?></th>
+            <th class="a-center"><?php //echo $this->__('Excl. Tax'); ?></th>
+            <th class="a-center"><?php //echo $this->__('Incl. Tax'); ?></th>
+        </tr>-->
+        <?php //endif; ?>
+    </thead>
+    <tbody>
+        <?php foreach($this->getItems() as $_item):?>
+        <tr>
+            <?php $_product = Mage::getModel('catalog/product')->load($_item->getProductId());  ?>
+            <td class="a-left"><img src="<?php echo Mage::helper('catalog/image')->init($_product, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(TRUE)->resize(60,85); ?>" width="60" height="85"></td>
+            <td class="attributes-col"><?php if ($this->hasProductUrl()):?><a href="<?php echo $this->getProductUrl() ?>"><?php endif;?><?php echo $_item->getName() ?><?php if ($this->hasProductUrl()):?></a><?php endif;?></td>
+            <td class="a-center"><?php echo $_item->getQty() ?></td>
+            <td class="a-right"><?php echo $this->helper('checkout')->formatPrice($_item->getRowTotal()) ?></td>
+        </tr>
+        <?php endforeach ?>
+    </tbody>
+    <?php
+    $totals = $this->getTotals();
+    if ($this->getTotals()): ?>
+    <tfoot>
+        <?php foreach($totals as $total): ?>
+        <tr>
+            <td style="border-right:0px;"></td>
+            <td colspan="2" class="th"><?php echo $total->getTitle()?></td>
+            <td><?php echo $this->helper('checkout')->formatPrice($total->getValue())?></td>
+        </tr>
+        <?php endforeach;?>
+    </tfoot>
+    <?php endif; ?>
+</table>
+
+<script type="text/javascript">
+    //<![CDATA[
+    decorateTable('checkout-review-table');
+    truncateOptions();
+    //]]>
+</script>

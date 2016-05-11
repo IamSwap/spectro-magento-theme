@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * zeonsolutions inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.zeonsolutions.com/shop/license-enterprise.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * This package designed for Magento ENTERPRISE edition
+ * =================================================================
+ * zeonsolutions does not guarantee correct work of this extension
+ * on any other Magento edition except Magento ENTERPRISE edition.
+ * zeonsolutions does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   Zeon
+ * @package    Zeon_Manufacturer
+ * @version    0.0.1
+ * @copyright  @copyright Copyright (c) 2013 zeonsolutions.Inc. (http://www.zeonsolutions.com)
+ * @license    http://www.zeonsolutions.com/shop/license-enterprise.txt
+ */
+-->
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <zextension translate="title">
+                        <title>Zeon Extensions</title>
+                        <sort_order>200</sort_order>
+                        <children>
+                            <zeon_manufacturer translate="title" module="zeon_manufacturer">
+                                <title>Manufacturer</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <manufacturer_list translate="title" module="zeon_manufacturer">
+                                        <title>Manage Manufacturer</title>
+                                        <sort_order>10</sort_order>
+                                    </manufacturer_list>
+                                    <manufacturer_settings>
+                                        <title>Manage Manufacturer Settings</title>
+                                        <sort_order>20</sort_order>
+                                    </manufacturer_settings>
+                                </children>
+                            </zeon_manufacturer>
+                        </children>
+                    </zextension>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <zextension translate="title">
+                                        <title>Zeon Extensions</title>
+                                    </zextension>
+                                    <zeon_manufacturer>
+                                        <title>Zeon Extensions - Manufacturer Settings Section</title>
+                                    </zeon_manufacturer>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <menu>
+        <zextension translate="title">
+            <title>Zeon Extensions</title>
+            <sort_order>90</sort_order>
+            <children>
+                <zeon_manufacturer translate="title" module="zeon_manufacturer">
+                    <title>Manufacturer</title>
+                    <sort_order>100</sort_order>                    
+                    <children>
+                        <manufacturer_list translate="title" module="zeon_manufacturer">
+                            <title>Manage Manufacturer</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/manufacturer_list</action>
+                            <depends>
+                                <module>Zeon_Manufacturer</module>
+                                <config>zeon_manufacturer/general/is_enabled</config>
+                            </depends>
+                        </manufacturer_list>
+                        <manufacturer_settings module="zeon_manufacturer">
+                            <title>Manage Manufacturer Settings</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/system_config/edit/section/zeon_manufacturer</action>
+                        </manufacturer_settings>
+                    </children>
+                </zeon_manufacturer>
+            </children>
+        </zextension>
+    </menu>
+</config>

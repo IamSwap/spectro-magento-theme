@@ -1,0 +1,177 @@
+<?php if(!Mage::getSingleton('customer/session')->isLoggedIn()) { ?>
+
+    <button type="button" class="overlay-close">Close</button>
+    <style>
+        .no-js .block-login {display:none;}
+        .no-js:hover .block-login {display:block;}
+    </style>
+    <div class="block-login login">
+        <div class="form-login">
+            <h1 class="title"><?php echo $this->__('Login') ?></h1>
+            <form action="<?php echo $this->getUrl('customer/account/loginPost') ?>" method="post">
+                <?php echo $this->getBlockHtml('formkey'); ?>
+                <div class="content">
+                    <input type="text" name="login[username]" id="mini-login" class="input-text" placeholder="Your Email" />
+                    <input type="password" name="login[password]" id="mini-password" class="input-text" placeholder="Password" />
+                    
+                    <button type="submit" class="button"><?php echo $this->__('Login') ?></button>
+
+                    <p class="fgt-pwd"><a href="#" class="forgot-pwd-form"><?php echo $this->__("Forgot Your Password?"); ?></a></p>
+                </div>
+
+                <div class="switcher">
+                    <p><?php echo $this->__("Don't have Account?"); ?> <a href="#" class="register-form"><?php echo $this->__('Register'); ?></a></p>.
+                </div>
+            </form>
+        </div>
+        <div class="form-forgot-pwd">
+            <h1 class="title"><?php echo $this->__('Forgot Your Password?') ?></h1>
+            <form action="<?php echo $this->getUrl('customer/account/forgotpasswordpost/') ?>" method="post">
+                <?php echo $this->getBlockHtml('formkey'); ?>
+                <div class="content">
+                    <h2><?php echo $this->__('Retrieve your password here'); ?></h2>
+                    <p><?php echo $this->__('Please enter your email address below. You will receive a link to reset your password.'); ?></p>
+                    <input type="text" name="email" alt="email" id="email_address" class="input-text required-entry validate-email" value="" placeholder="Email Address">
+                    
+                    <button type="submit" class="button"><?php echo $this->__('Submit') ?></button>
+                </div>
+
+                <div class="switcher">
+                    <p><?php echo $this->__("Back to"); ?> <a href="#" class="login-form"><?php echo $this->__('Login'); ?></a></p>.
+                </div>
+            </form>
+        </div>
+        <div class="form-register">            
+                <h1 class="title"><?php echo $this->__('Register') ?></h1>
+                <form action="<?php echo $this->getUrl('customer/account/createpost') ?>" method="post" id="form-validate">
+                <?php echo $this->getBlockHtml('formkey'); ?>
+                <div class="content">
+                    <input type="hidden" name="success_url" value="">
+                    <input type="hidden" name="error_url" value="">
+                    
+                    <input type="text" id="firstname" name="firstname" value="" title="First Name" maxlength="255" class="input-text required-entry" placeholder="First Name">
+                    
+                    <input type="text" id="lastname" name="lastname" value="" title="Last Name" maxlength="255" class="input-text required-entry" placeholder="Last Name">
+                    
+                    <input type="text" name="email" id="email_address" value="" title="Email Address" class="input-text validate-email required-entry" placeholder="Your Email">
+
+                            
+                    <input type="password" name="password" id="password" title="Password" class="input-text required-entry validate-password" placeholder="Password">
+                                
+                    <input type="password" name="confirmation" title="Confirm Password" id="confirmation" class="input-text required-entry validate-cpassword" placeholder="Confirm Password">     
+               
+                    <script type="text/javascript">
+                    //<![CDATA[
+                        function toggleRememberMepopup(event){
+                            if($('remember-me-popup')){
+                                var viewportHeight = document.viewport.getHeight(),
+                                    docHeight      = $$('body')[0].getHeight(),
+                                    height         = docHeight > viewportHeight ? docHeight : viewportHeight;
+                                $('remember-me-popup').toggle();
+                                $('window-overlay').setStyle({ height: height + 'px' }).toggle();
+                            }
+                            Event.stop(event);
+                        }
+
+                        document.observe("dom:loaded", function() {
+                            new Insertion.Bottom($$('body')[0], $('window-overlay'));
+                            new Insertion.Bottom($$('body')[0], $('remember-me-popup'));
+
+                            $$('.remember-me-popup-close').each(function(element){
+                                Event.observe(element, 'click', toggleRememberMepopup);
+                            })
+                            $$('#remember-me-box a').each(function(element) {
+                                Event.observe(element, 'click', toggleRememberMepopup);
+                            });
+                        });
+                    //]]>
+
+
+                    jQuery(function () {
+
+                        jQuery(".form-register").hide();
+                        jQuery(".form-forgot-pwd").hide();
+
+                        jQuery(".register-form").click(function () {
+                            jQuery(".form-login").fadeOut();
+                            jQuery(".form-register").fadeIn();
+                            return false;
+                        });
+                        
+                        jQuery(".login-form").click(function () {
+                            jQuery(".form-login").fadeIn();
+                            jQuery(".form-register").fadeOut();
+                            jQuery(".form-forgot-pwd").fadeOut();
+                            return false;
+                        });
+
+                        jQuery(".forgot-pwd-form").click(function () {
+                            jQuery(".form-forgot-pwd").fadeIn();
+                            jQuery(".form-login").fadeOut();
+                            return false;
+                        });                      
+
+
+                    });
+                    
+                    jQuery(document).ready(function() { 
+                        jQuery(".top-log-in-a").click(function(){
+                            event.preventDefault();
+                            jQuery('.login-popup .item-overlay').addClass('is-visible');
+                        });  
+
+                        <?php if (!Mage::helper('customer')->isLoggedIn() ) { ?>   
+                            jQuery(".top-account-a").click(function(){
+                                event.preventDefault();
+                                jQuery('.login-popup .item-overlay').addClass('is-visible');
+                            }); 
+                            jQuery(".top-wishlist-a").click(function(){
+                                event.preventDefault();
+                                jQuery('.login-popup .item-overlay').addClass('is-visible');
+                            }); 
+                        <?php } ?>                 
+                    });
+
+                    
+
+                    
+
+                    </script>        
+                   
+                    <button type="submit" title="Submit" class="button"><span><span><?php echo $this->__('Register'); ?></span></span></button>
+
+                </div>
+                <div class="switcher">
+                    <p><?php echo $this->__("Back to"); ?> <a href="#" class="login-form"><?php echo $this->__('Login'); ?></a></p>.
+                </div>
+            </form>            
+        </div>
+    </div>
+
+
+    
+
+<?php } else { ?>
+
+    <button type="button" class="overlay-close">Close</button>
+    <style>
+        .no-js .block-login {display:none;}
+        .no-js:hover .block-login {display:block;}
+    </style>
+    <div class="block-login" >
+        <h1 class="title"><?php echo $this->__('My Account') ?></h1>
+        
+        <div class="content">
+
+            <ul class="links">
+                <li class="first"><a href="<?php echo $this->getUrl(); ?>customer/account/" title="<?php echo $this->__('My Account') ?>"><?php echo $this->__('My Account') ?></a></li>
+                <li><a href="<?php echo $this->getUrl(); ?>wishlist/" title="<?php echo $this->__('My Wishlist') ?>"><?php echo $this->__('My Wishlist') ?></a></li>
+                <li class=" last"><a href="<?php echo $this->getUrl(); ?>customer/account/logout/" title="<?php echo $this->__('Log Out') ?>"><?php echo $this->__('Log Out') ?></a></li>
+            </ul>
+            
+        </div>
+    </div>
+
+<?php } ?>
+
+

@@ -1,0 +1,439 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+        <myconf translate="label">
+            <label>Spectro Settings</label>
+            <sort_order>150</sort_order>
+        </myconf>
+    </tabs>
+	<sections>
+		<featuredproduct translate="label" module="featuredproduct">
+			<label>Product Sliders</label>
+			<tab>myconf</tab>
+			<sort_order>50</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<newproduct_config translate="label">
+					<label>New Products Config</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label comment">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								adminhtml/system_config_source_yesno
+							</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</enabled>						
+                        <title translate="label">
+                            <label>Title: </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>												
+						<qty translate="label">
+                            <label>Qty Of Products: </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </qty> 
+                        <autoplay translate="label comment">
+							<label>Autoplay</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplay>
+						<autoplayspeed translate="label comment">
+							<label>Autoplay Speed</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplayspeed>
+						<infinite translate="label comment">
+							<label>Infinite</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</infinite>    
+						<slidestoshow translate="label comment">
+							<label>Slides To Show</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoshow>
+						<slidestoscroll translate="label comment">
+							<label>Slides To Scroll</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoscroll> 
+					</fields>
+				</newproduct_config>	
+
+
+				<featuredproduct_config translate="label">
+					<label>Featured Product Config</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label comment">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								adminhtml/system_config_source_yesno
+							</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</enabled>						
+                        <title translate="label">
+                            <label>Title: </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>												
+						<qty translate="label">
+                            <label>Qty Of Products: </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </qty>  
+                        <autoplay translate="label comment">
+							<label>Autoplay</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplay>
+						<autoplayspeed translate="label comment">
+							<label>Autoplay Speed</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplayspeed>
+						<infinite translate="label comment">
+							<label>Infinite</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</infinite>    
+						<slidestoshow translate="label comment">
+							<label>Slides To Show</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoshow>
+						<slidestoscroll translate="label comment">
+							<label>Slides To Scroll</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoscroll>                                      
+					</fields>
+				</featuredproduct_config>	
+
+				<relatedproduct_config translate="label">
+					<label>Related Products Config</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>3</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label comment">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								adminhtml/system_config_source_yesno
+							</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</enabled>						
+                        <title translate="label">
+                            <label>Title: </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+												
+						<qty translate="label">
+                            <label>Qty Of Products: </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </qty> 
+                        <autoplay translate="label comment">
+							<label>Autoplay</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplay>
+						<autoplayspeed translate="label comment">
+							<label>Autoplay Speed</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplayspeed>
+						<infinite translate="label comment">
+							<label>Infinite</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</infinite>    
+						<slidestoshow translate="label comment">
+							<label>Slides To Show</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoshow>
+						<slidestoscroll translate="label comment">
+							<label>Slides To Scroll</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoscroll>                                             
+					</fields>
+				</relatedproduct_config>	
+
+				<upsellproduct_config translate="label">
+					<label>Upsell Products Config</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>4</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label comment">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								adminhtml/system_config_source_yesno
+							</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</enabled>						
+                        <title translate="label">
+                            <label>Title: </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>										
+						
+                        <autoplay translate="label comment">
+							<label>Autoplay</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplay>
+						<autoplayspeed translate="label comment">
+							<label>Autoplay Speed</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplayspeed>
+						<infinite translate="label comment">
+							<label>Infinite</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</infinite>    
+						<slidestoshow translate="label comment">
+							<label>Slides To Show</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoshow>
+						<slidestoscroll translate="label comment">
+							<label>Slides To Scroll</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoscroll>                                             
+					</fields>
+				</upsellproduct_config>	
+
+				<crosssellproduct_config translate="label">
+					<label>Cross-Sell Products Config</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>5</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label comment">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								adminhtml/system_config_source_yesno
+							</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</enabled>						
+                        <title translate="label">
+                            <label>Title: </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+												
+						<qty translate="label">
+                            <label>Qty Of Products: </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </qty> 
+                        <autoplay translate="label comment">
+							<label>Autoplay</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplay>
+						<autoplayspeed translate="label comment">
+							<label>Autoplay Speed</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</autoplayspeed>
+						<infinite translate="label comment">
+							<label>Infinite</label>
+							<frontend_type>select</frontend_type>
+							<source_model>
+								featuredproduct/config_truefalse
+							</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</infinite>    
+						<slidestoshow translate="label comment">
+							<label>Slides To Show</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoshow>
+						<slidestoscroll translate="label comment">
+							<label>Slides To Scroll</label>
+							<frontend_type>text</frontend_type>							
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</slidestoscroll>                                             
+					</fields>
+				</crosssellproduct_config>	
+
+			</groups>
+		</featuredproduct>
+	</sections>
+</config>
+
+

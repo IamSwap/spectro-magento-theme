@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * zeonsolutions inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.zeonsolutions.com/shop/license-enterprise.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * This package designed for Magento ENTERPRISE edition
+ * =================================================================
+ * zeonsolutions does not guarantee correct work of this extension
+ * on any other Magento edition except Magento ENTERPRISE edition.
+ * zeonsolutions does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   design
+ * @package    default_default
+ * @version    0.0.1
+ * @copyright  @copyright Copyright (c) 2013 zeonsolutions.Inc. (http://www.zeonsolutions.com)
+ * @license    http://www.zeonsolutions.com/shop/license-enterprise.txt
+ */
+-->
+<layout version="0.1.0">
+    <adminhtml_manufacturer_list_index>
+        <reference name="content">
+            <block type="zeon_manufacturer/adminhtml_manufacturer" name="manufacturer_list" />
+        </reference>
+    </adminhtml_manufacturer_list_index>
+    <adminhtml_manufacturer_list_edit>
+        <update handle="editor"/>
+        <reference name="left">
+            <block type="zeon_manufacturer/adminhtml_manufacturer_edit_tabs" name="manufacturer_edit_tabs">
+                <block type="zeon_manufacturer/adminhtml_manufacturer_edit_tab_form" name="manufacturer_edit_tab_form"/>
+                <block type="zeon_manufacturer/adminhtml_manufacturer_edit_tab_meta" name="manufacturer_edit_tab_meta"/>
+                <action method="addTab"><name>information_section</name><block>manufacturer_edit_tab_form</block></action>
+                <action method="addTab"><name>meta_section</name><block>manufacturer_edit_tab_meta</block></action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="zeon_manufacturer/adminhtml_manufacturer_edit" name="manufacturer_edit_information"/>
+        </reference>
+    </adminhtml_manufacturer_list_edit>
+    <adminhtml_manufacturer_list_grid>
+        <remove name="root"/>
+        <block type="zeon_manufacturer/adminhtml_manufacturer_grid" name="manufacturer_grid" output="toHtml"/>
+    </adminhtml_manufacturer_list_grid>
+</layout>

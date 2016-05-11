@@ -1,0 +1,56 @@
+<?php
+/**
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2011-2014 Webcomm Pty Ltd
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+?>
+
+<?php /* @var $this Mage_Bundle_Block_Catalog_Product_View_Type_Bundle_Option_Select */ ?>
+<?php $_option      = $this->getOption(); ?>
+<?php $_selections  = $_option->getSelections(); ?>
+<?php $_default     = $_option->getDefaultSelection(); ?>
+<?php list($_defaultQty, $_canChangeQty) = $this->_getDefaultValues(); ?>
+
+<dt>
+    <label<?php if ($_option->getRequired()) echo ' class="required"' ?>><?php echo $this->htmlEscape($_option->getTitle()) ?><?php if ($_option->getRequired()) echo '<em>*</em>' ?></label>
+</dt>
+<dd<?php if ($_option->decoratedIsLast){?> class="last"<?php }?>>
+    <div class="input-box">
+    <?php if ($this->_showSingle()): ?>
+        <?php echo $this->getSelectionTitlePrice($_selections[0]) ?>
+        <input type="hidden" name="bundle_option[<?php echo $_option->getId() ?>]" value="<?php echo $_selections[0]->getSelectionId() ?>"/>
+    <?php else:?>
+        <select onchange="bundle.changeSelection(this)" id="bundle-option-<?php echo $_option->getId() ?>" name="bundle_option[<?php echo $_option->getId() ?>]" class="bundle-option-<?php echo $_option->getId() ?><?php if ($_option->getRequired()) echo ' required-entry' ?> bundle-option-select change-container-classname">
+            <option value=""><?php echo $this->__('Choose a selection...') ?></option>
+        <?php foreach ($_selections as $_selection): ?>
+            <option value="<?php echo $_selection->getSelectionId() ?>"<?php if ($this->_isSelected($_selection)) echo ' selected="selected"' ?><?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>><?php echo $this->getSelectionTitlePrice($_selection, false) ?></option>
+        <?php endforeach; ?>
+        </select>
+    <?php endif; ?>
+    </div>
+    <div class="qty-holder">
+        <div class="input-addon">
+            <label for="bundle-option-<?php echo $_option->getId() ?>-qty-input"><?php echo $this->__('Qty:') ?>&nbsp;</label>
+        </div>
+        <input onkeyup="bundle.changeOptionQty(this, event)" onblur="bundle.changeOptionQty(this, event)" <?php if (!$_canChangeQty) echo ' disabled="disabled"' ?> id="bundle-option-<?php echo $_option->getId() ?>-qty-input" class="input-text form-control qty<?php if (!$_canChangeQty) echo ' qty-disabled' ?>" type="text" name="bundle_option_qty[<?php echo $_option->getId() ?>]" value="<?php echo $_defaultQty ?>"/>
+    </div>
+</dd>

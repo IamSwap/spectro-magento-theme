@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <CamelThemes_Layerednav>
+            <active>true</active>
+            <codePool>community</codePool>
+    	</CamelThemes_Layerednav>
+    </modules>
+</config>

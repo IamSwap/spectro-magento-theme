@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CamelThemes_Ajax>
+            <version>0.1.0</version>
+        </CamelThemes_Ajax>
+    </modules>
+    <frontend>
+        <routers>
+            <ajax>
+                <use>standard</use>
+                <args>
+                    <module>CamelThemes_Ajax</module>
+                    <frontName>ajax</frontName>
+                </args>
+            </ajax>
+            <newsletter>
+                <use>standard</use>
+                <args>
+                    <module>CamelThemes_Ajax</module>
+                    <frontName>newsletter</frontName>
+                </args>
+            </newsletter>
+        </routers>
+
+        <layout>
+            <updates>
+                <ajax>
+                    <file>ajax.xml</file>
+                </ajax>
+            </updates>
+        </layout>
+
+    </frontend>   
+    <global>
+        <resources>
+            <ajax_setup>
+                <setup>
+                    <module>CamelThemes_Ajax</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ajax_setup>
+            <ajax_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ajax_write>
+            <ajax_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ajax_read>
+        </resources>
+    </global>
+    <global>
+        <rewrite>
+            <ajax_cart> <!--This can be any unique id -->
+                <from><![CDATA[#^/checkout/cart/#]]></from>  <!-- the URL which u want to override-->
+                <to>/ajax/index/</to>  <!-- destination url -->
+            </ajax_cart>
+        </rewrite>
+        <models>
+            <ajax>
+                <class>CamelThemes_Ajax_Model</class>
+            </ajax>
+        </models>
+        <blocks>
+            <ajax>
+                <class>CamelThemes_Ajax_Block</class>
+            </ajax>
+        </blocks>
+        <helpers>
+            <ajax>
+                <class>CamelThemes_Ajax_Helper</class>
+            </ajax>
+        </helpers>
+    </global>
+    <adminhtml>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ajax>
+                                            <title>Ajax cart Settings</title>
+                                        </ajax>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <menu>
+            <camelthemes module="themeoptions" translate="title">
+                <title><![CDATA[<span class="cm-mainmenu">CamelPanel</span>]]></title>
+                <sort_order>90</sort_order>               
+                <children>
+                    <ajax translate="title" module="themeoptions">
+                        <title>Ajax Configurations</title>
+                        <sort_order>2</sort_order>
+                        <action>adminhtml/system_config/edit/section/ajax</action>                        
+                    </ajax>
+                </children>
+            </camelthemes>
+        </menu>
+    </adminhtml>
+    <default>
+        <ajax>
+            <general>
+                <enable>1</enable>
+                <update_blocks>a:2:{s:2:"id";a:4:{i:0;s:17:".block.block-cart";i:1;s:14:".header .links";i:2;s:26:".checkout-cart-index .cart";i:3;s:16:".header-minicart";i:4;s:9:".minicart";i:5;s:15:".block-wishlist";i:6;s:13:".mini-compare";}s:3:"xml";a:4:{i:0;s:12:"cart_sidebar";i:1;s:9:"top.links";i:2;s:13:"checkout.cart";i:3;s:13:"minicart_head";i:4;s:11:"footer.cart";i:5;s:16:"wishlist_sidebar";i:6;s:23:"catalog.compare.sidebar";}}</update_blocks>
+            </general>
+            <ajax_messages>
+                <removecompare_title>Are you sure?</removecompare_title>
+                <removecompare_text>You would like to remove this item from the compare products?</removecompare_text>
+                <removecompare_confirmbuttontext>Yes, remove it!</removecompare_confirmbuttontext>
+                <removecompare_cancelbuttontext>No, cancel plz!</removecompare_cancelbuttontext>
+                <removecompare_cancelledtext>Please continue Shopping :)</removecompare_cancelledtext>
+
+                <ajaxclearcart_title>Are you sure?</ajaxclearcart_title>
+                <ajaxclearcart_text>Do you want to empty Shopping Cart?</ajaxclearcart_text>
+                <ajaxclearcart_confirmbuttontext>Yes, empty it!</ajaxclearcart_confirmbuttontext>
+                <ajaxclearcart_cancelbuttontext>No, cancel plz!</ajaxclearcart_cancelbuttontext>
+                <ajaxclearcart_cancelledtext>Please continue Shopping :)</ajaxclearcart_cancelledtext>
+
+                <ajaxdeleteitem_title>Are you sure?</ajaxdeleteitem_title>
+                <ajaxdeleteitem_text>You would like to remove this product from the Shopping cart?</ajaxdeleteitem_text>
+                <ajaxdeleteitem_confirmbuttontext>Yes, empty it!</ajaxdeleteitem_confirmbuttontext>
+                <ajaxdeleteitem_cancelbuttontext>No, cancel plz!</ajaxdeleteitem_cancelbuttontext>
+                <ajaxdeleteitem_cancelledtext>Please continue Shopping :)</ajaxdeleteitem_cancelledtext>
+
+                <ajaxcoupon_emptytext>Please enter some value</ajaxcoupon_emptytext>
+            </ajax_messages>
+        </ajax>
+    </default>
+</config>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout version="0.1.1">
+	<default>
+		<reference name="head">
+			<action method="addJs"><file>jscolor/jscolor.js</file></action>
+			<action method="addCss"><name>themeoptions.css</name></action>
+		</reference>
+	</default>
+</layout>

@@ -1,0 +1,97 @@
+<?php
+    $_enabled = Mage::getStoreConfig('tab1/main_options/enable_newsletter'); 
+    $_cookie = Mage::getStoreConfig('tab1/main_options/newsletter_cookie'); 
+?>
+
+<?php if($_enabled): ?>
+<script type="text/javascript">
+ 
+    jQuery(document).ready(function() {
+ 
+        var check_cookie = jQuery.cookie('popup-shown');
+ 
+        if(!check_cookie) {
+            beginNewsletterForm();            
+        }
+        jQuery('.newsletter-popup-close').click(function(){
+            jQuery(".newsletter-popup").removeClass('is-visible');
+            jQuery.cookie('popup-shown', 'true', { expires: <?php echo $_cookie; ?> });
+        });
+    });
+ 
+    function beginNewsletterForm () {
+        jQuery(".newsletter-popup").addClass('is-visible');
+    }
+</script>
+ 
+
+      <div class="newsletter-popup">
+            <div class="newsletter-popup-container">
+
+                  <div class="content">
+                        <div class="register-form">
+                            <h2><?php echo $this->__('Newsletter'); ?></h2>
+                            <p>Subcribe to our newsletter to receive huge discounts & latest product updates.</p>
+                               <form action="<?php echo $this->getUrl('newsletter/subscriber/new/') ?>" method="post" id="newsletter-validate-detail-ajax">
+ 
+                                    <div class="form-fields-middle">
+                                          <div class="input-wrapper">
+                                                <input name="email" id="email" onfocus="if(this.value=='Enter Your Email') this.value=''" onblur="if(this.value=='') this.value='Enter Your Email'" class="input-text validate-email required-entry field-left" type="text" value="Enter Your Email" />
+                                                <button type="submit" class="button"><?php echo $this->__('Subcribe'); ?></button>
+                                          </div>
+                                    </div>
+                                    
+                                    <div id="loading-message" style="display: none"><p><?php echo $this->__('Please wait ...')?></p></div>
+                                    <div id="show-message" style="display: none">&nbsp;</div>
+ 
+                              </form>
+                        </div>
+                  </div>
+                  <a href="#" class="newsletter-popup-close img-replace">Close</a>
+            </div>
+      </div>
+
+ 
+<script type="text/javascript">
+      //var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail-ajax', true);
+</script>
+
+
+<!--New Script Here-->
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            jQuery('.newsletter-popup .button').click(function(e){
+                var email = jQuery("#email").val();
+                var url = jQuery('#newsletter-validate-detail-ajax').attr('action');
+                var _data = url.replace('newsletter/subscriber/new', 'ajax/subscriber/newAjax');
+                e.preventDefault();
+                //if(newsletterSubscriberFormDetail.validator.validate()){
+                    try{
+                        jQuery('#loading-message').show();
+                        jQuery.ajax({
+                            url: _data,
+                            dataType: 'json',
+                            type: 'POST',
+                            data: {email: email},
+                            success: function (data){
+                                if(data.status != "error"){
+                                    jQuery('#loading-message').hide();
+                                    jQuery('#newsletter').val('');
+                                    jQuery('#show-message').html(data.message).show();
+                                }
+                            },
+                            complete: function(){
+                                setTimeout(function(){
+                                    jQuery('#show-message').hide();
+                                },2500);
+                            }
+                        });
+                    }catch (e){
+                    //}
+                }
+            })
+        });
+    </script>
+<!--End our Script-->
+
+<?php endif; ?>

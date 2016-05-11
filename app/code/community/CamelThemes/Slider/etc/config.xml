@@ -1,0 +1,146 @@
+<config>
+  <modules>
+    <CamelThemes_Slider>
+      <version>0.1.0</version>
+    </CamelThemes_Slider>
+  </modules>
+
+  <frontend>
+    <routers>
+      <routeurfrontend>
+        <use>standard</use>
+          <args>
+            <module>CamelThemes_Slider</module>
+            <frontName>slider</frontName>
+          </args>
+      </routeurfrontend>
+    </routers>
+
+    <layout>
+      <updates>
+        <slider>
+          <file>camelthemes_slider.xml</file>
+        </slider>
+      </updates>
+    </layout>
+
+  </frontend>
+
+  <admin>
+    <routers>
+      <slider>
+        <use>admin</use>
+        <args>
+          <module>CamelThemes_Slider</module>
+          <frontName>slideradmin</frontName>
+        </args>
+      </slider>
+    </routers>
+  </admin>
+
+  <adminhtml>
+    <layout>
+      <updates>
+          <slider>
+              <file>camelthemes_slider.xml</file>
+           </slider>
+      </updates>
+    </layout>
+
+        <menu>
+            <camelthemes module="themeoptions" translate="title">
+                <title><![CDATA[<span class="cm-mainmenu">CamelPanel</span>]]></title>
+                <sort_order>90</sort_order>               
+                <children>
+                    <slider translate="title" module="themeoptions">
+                        <title>Spectro Slider</title>
+                        <sort_order>0</sort_order>
+                        <children>
+                            <set_time>
+                                 <title>Manage Slides</title>
+                                 <action>slideradmin/adminhtml_index</action>
+                            </set_time>
+                            <configuration>
+                                <title>Slider Configuration</title>
+                                <sort_order>1</sort_order>
+                                <action>adminhtml/system_config/edit/section/slider</action>
+                            </configuration>
+                        </children>
+                    </slider>
+                </children>
+            </camelthemes>
+        </menu>
+
+  </adminhtml>
+
+
+  <global>
+
+    <blocks>
+      <slider>
+        <class>CamelThemes_Slider_Block</class>
+      </slider>
+    </blocks>
+
+    <models>
+
+      <slider>
+       <class>CamelThemes_Slider_Model</class>
+       <resourceModel>slider_mysql4</resourceModel>
+      </slider>
+
+      <slider_mysql4>
+        <class>CamelThemes_Slider_Model_Mysql4</class>
+        <entities>
+           <slider>
+             <table>camelthemes_slider</table>
+           </slider>
+        </entities>
+      </slider_mysql4>
+
+    </models>
+
+    <helpers>
+            <slider>
+                <class>CamelThemes_Slider_Helper</class>
+            </slider>
+        </helpers>
+      
+    <resources>
+
+      <slider_setup>
+        <setup>
+          <module>CamelThemes_Slider</module>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </slider_setup>
+
+      <slider_write>
+          <connection>
+            <use>core_write</use>
+          </connection>
+      </slider_write>
+
+      <slider_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </slider_read>
+
+    </resources>
+   
+  </global>
+
+  <default>
+        <slider>
+            <slider_config>
+                <enabled>1</enabled>
+                <slider_box_layout>0</slider_box_layout>
+                <slider_style>slide</slider_style>
+            </slider_config>
+        </slider>
+    </default>
+
+</config>

@@ -1,0 +1,198 @@
+<?php
+/**
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2011-2014 Webcomm Pty Ltd
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Page_Block_Html_Topmenu
+ */
+?>
+
+<?php $_topcart = Mage::getStoreConfig('tab1/main_options/enable_topcart'); ?>
+<?php $_toplogin = Mage::getStoreConfig('tab1/main_options/enable_toplogin'); ?>
+<?php $_topsearch = Mage::getStoreConfig('tab1/main_options/enable_topsearch'); ?>
+<?php $_toplanguage = Mage::getStoreConfig('tab1/main_options/enable_toplanguage'); ?>
+
+
+<?php $_menu = $this->getHtml('level-top') ?>
+<div class="main-nav">
+   <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-9 col-xs-3">
+                <?php if ($_menu): ?>
+                    <nav id="mainmenu"> 
+                        <div class="nav-wrapper" >
+                            <ul id="nav-menu">
+                                <?php echo $_menu ?>
+                            </ul>
+                        </div>
+                    </nav>
+
+                    <button class="mmenu-toggle">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <nav id="mmenu">
+                        <ul>
+                            <?php echo $_menu ?>
+                        </ul>
+                    </nav>
+                    <script type="text/javascript">
+                       jQuery(document).ready(function() {
+                            jQuery("#mmenu").mmenu();
+                            jQuery(".mmenu-toggle").click(function() {
+                                jQuery("#mmenu").trigger("open.mm");
+                            });
+                       });
+                    </script>
+                <?php endif ?>
+            </div>
+            <div style="float:right;">
+                <div class="quick-shortcuts">
+                
+                        <?php if ($_topsearch) : ?>
+                            <div class="item search-link">
+                                <a href="#" class="item-link"><i class="fa fa-search"></i></a>                                    
+                                <?php echo $this->getChildHtml('topSearch') ?>                                                                
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($_toplanguage) : ?>
+                            <div class="item">
+                                <a href="#" class="item-link"><i class="fa fa-language"></i></a>
+                                    <div class="item-overlay">
+                                        <div class="item-overlay-container">
+                                            <?php echo $this->getChildHtml('store_language') ?>
+                                        </div>  
+                                    </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($_toplogin) : ?>
+                            <div class="item login-popup">
+                                <a href="#" class="item-link"><i class="fa fa-user"></i></a>
+                                    <div class="item-overlay">
+                                        <div class="item-overlay-container">
+                                            <?php echo $this->getChildHtml('customer_form_mini_login'); ?>
+                                        </div>
+                                    </div>
+                            </div>
+                        <?php endif; ?>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+
+
+
+<script type="text/javascript">
+
+
+/*
+    jQuery('.nav > li').on('mouseover', function(e){
+        jQuery(this).find("ul:first").show();
+        jQuery(this).find('> a').addClass('active');
+    }).on('mouseout', function(e){
+        jQuery(this).find("ul:first").hide();
+        jQuery(this).find('> a').removeClass('active');
+    });
+    */
+
+    jQuery(function(){
+      jQuery('a[href="#"]').on('click', function(e){
+        e.preventDefault();
+      });
+      
+      jQuery('#nav-menu > li').on('mouseover', function(e){
+        jQuery(this).find("ul:first").show();
+        jQuery(this).find('> a').addClass('active');
+      }).on('mouseout', function(e){
+        jQuery(this).find("ul:first").hide();
+        jQuery(this).find('> a').removeClass('active');
+      });
+      
+      jQuery('#nav-menu li li').on('mouseover',function(e){
+        if(jQuery(this).has('ul').length) {
+          jQuery(this).parent().addClass('expanded');
+        }
+        jQuery('ul:first',this).parent().find('> a').addClass('active');
+        jQuery('ul:first',this).show();
+      }).on('mouseout',function(e){
+        jQuery(this).parent().removeClass('expanded');
+        jQuery('ul:first',this).parent().find('> a').removeClass('active');
+        jQuery('ul:first', this).hide();
+      });
+
+
+      jQuery('.quick-shortcuts .search-link').on('mouseover', function(e){        
+        jQuery(this).addClass('active');
+        //jQuery(this).find('.top-search').addClass('active');
+        jQuery(this).find('.top-search').removeClass("slideup").addClass("slidedown");
+      }).on('mouseout', function(e){ 
+        jQuery(this).removeClass('active');
+        //jQuery(this).find('.top-search').removeClass('active');
+        jQuery(this).find('.top-search').removeClass("slidedown").addClass("slideup");
+
+      });
+
+
+
+    });
+
+
+    jQuery('.quick-shortcuts > .item').on('click', function(e){
+        
+        //jQuery(this).find('.item-overlay').removeClass('overlay-scale-close');
+        jQuery(this).find('.item-overlay').addClass('is-visible');
+    });
+
+    jQuery(document).on('click', '.overlay-close', function(e){
+              
+        jQuery(this).closest('.item-overlay').removeClass('is-visible');
+        //jQuery(this).closest('.item-overlay').addClass('overlay-scale-close');
+     });
+
+
+
+    jQuery(document).ready(function($){
+        //close popup when clicking the esc keyboard button
+        $(document).keyup(function(event){
+            if(event.which=='27'){
+                $('.item-overlay').removeClass('is-visible');
+            }
+        });
+    });
+
+    
+
+</script>
+
+
+
+

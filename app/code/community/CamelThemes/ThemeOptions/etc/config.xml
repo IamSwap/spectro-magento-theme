@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CamelThemes_ThemeOptions>
+            <version>0.1.0</version>
+        </CamelThemes_ThemeOptions>
+    </modules>
+    <global>
+        <models>
+            <themeoptions>
+                <class>CamelThemes_ThemeOptions_Model</class>
+            </themeoptions>
+        </models>
+        <helpers>
+            <themeoptions>
+                <class>CamelThemes_ThemeOptions_Helper</class>
+            </themeoptions>
+        </helpers>
+        <blocks>
+            <themeoptions>
+                <class>CamelThemes_ThemeOptions_Block</class>
+            </themeoptions>
+            <adminhtml>
+                <rewrite>
+                    <page_menu>CamelThemes_ThemeOptions_Block_Adminhtml_Page_Menu</page_menu>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <themeoptions>
+                    <file>themeoptions.xml</file>
+                </themeoptions>
+            </updates>
+        </layout>
+        <menu>
+            <camelthemes module="themeoptions" translate="title">
+                <title><![CDATA[<span class="cm-mainmenu">CamelPanel</span>]]></title>
+                <sort_order>90</sort_order>               
+                <children>
+                    <themeoptions translate="title" module="themeoptions">
+                        <title>Theme Options</title>
+                        <sort_order>0</sort_order>
+                        <action>adminhtml/system_config/edit/section/tab1</action>
+                    </themeoptions>
+                </children>
+            </camelthemes>
+        </menu>
+    </adminhtml>
+    <default>
+        <tab1>
+            <main_options>
+                <main_font>Open Sans</main_font>
+                <main_color>29AAE3</main_color>
+                <footer_bg_color>F0F0F0</footer_bg_color>
+                <enable_topcart>1</enable_topcart>
+                <enable_toplogin>1</enable_toplogin>
+                <enable_topsearch>1</enable_topsearch>
+                <enable_toplanguage>1</enable_toplanguage>
+                <enable_newsletter>1</enable_newsletter>
+                <newsletter_cookie>7</newsletter_cookie>
+                <enable_social_links>1</enable_social_links> 
+                <enable_app_links>1</enable_app_links>                
+            </main_options>
+            <productpage_options>
+                <show_socialsharing>1</show_socialsharing>
+                <show_wishlist>1</show_wishlist>
+                <show_compare>1</show_compare>
+                <show_related>1</show_related>
+                <show_upsell>1</show_upsell>
+            </productpage_options>
+        </tab1>
+    </default>
+</config>

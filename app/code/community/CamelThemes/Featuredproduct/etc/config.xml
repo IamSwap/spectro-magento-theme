@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <CamelThemes_Featuredproduct>
+            <version>1.5.0.1</version>
+        </CamelThemes_Featuredproduct>
+    </modules>
+    <frontend>
+        <routers>
+            <featuredproduct>
+                <use>standard</use>
+                <args>
+                    <module>CamelThemes_Featuredproduct</module>
+                    <frontName>featuredproduct</frontName>
+                </args>
+            </featuredproduct>
+        </routers>
+        <layout>
+            <updates>
+                <featuredproduct>
+                    <file>featuredproduct.xml</file>
+                </featuredproduct>
+            </updates>
+        </layout>
+    </frontend>
+    
+    <adminhtml>
+        <menu>
+            <camelthemes module="themeoptions" translate="title">
+                <title><![CDATA[<span class="cm-mainmenu">CamelPanel</span>]]></title>
+                <sort_order>90</sort_order>               
+                <children>
+                    <featuredproduct translate="title" module="themeoptions">
+                        <title>Product Sliders</title>
+                        <sort_order>3</sort_order>
+                        <action>adminhtml/system_config/edit/section/featuredproduct</action>                        
+                    </featuredproduct>
+                </children>
+            </camelthemes>
+        </menu>
+    </adminhtml>
+
+    <global>
+        <models>
+            <featuredproduct>
+                <class>CamelThemes_Featuredproduct_Model</class>
+                <resourceModel>featuredproduct_mysql4</resourceModel>
+            </featuredproduct>
+            <featuredproduct_mysql4>
+                <class>CamelThemesFeaturedproduct_Model_Mysql4</class>
+                <entities>
+                    <featuredproduct>
+                        <table>featuredproduct</table>
+                    </featuredproduct>
+                </entities>
+            </featuredproduct_mysql4>
+        </models>
+        <resources>
+            <featuredproduct_setup>
+                <setup>
+                    <module>CamelThemes_Featuredproduct</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </featuredproduct_setup>
+            <featuredproduct_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </featuredproduct_write>
+            <featuredproduct_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </featuredproduct_read>
+        </resources>
+        <blocks>
+            <featuredproduct>
+                <class>CamelThemes_Featuredproduct_Block</class>
+            </featuredproduct>
+        </blocks>
+        <helpers>
+            <featuredproduct>
+                <class>CamelThemes_Featuredproduct_Helper</class>
+            </featuredproduct>
+        </helpers>
+    </global>
+	<default>
+		<featuredproduct>
+			<featuredproduct_config>
+				<enabled>1</enabled>
+				<title>Featured Products</title>				
+				<qty>6</qty>
+                <autoplay>true</autoplay>
+                <autoplayspeed>2000</autoplayspeed>
+                <infinite>true</infinite>
+                <slidestoshow>4</slidestoshow>
+                <slidestoscroll>1</slidestoscroll>
+			</featuredproduct_config>
+            <newproduct_config>
+                <enabled>1</enabled>
+                <title>Latest Collections</title>                
+                <qty>6</qty>
+                <autoplay>true</autoplay>
+                <autoplayspeed>2000</autoplayspeed>
+                <infinite>true</infinite>
+                <slidestoshow>4</slidestoshow>
+                <slidestoscroll>1</slidestoscroll>
+            </newproduct_config>
+            <relatedproduct_config>
+                <enabled>1</enabled>
+                <title>Related Products</title>                
+                <qty>6</qty>
+                <autoplay>true</autoplay>
+                <autoplayspeed>2000</autoplayspeed>
+                <infinite>true</infinite>
+                <slidestoshow>5</slidestoshow>
+                <slidestoscroll>1</slidestoscroll>
+            </relatedproduct_config>
+            <upsellproduct_config>
+                <enabled>1</enabled>
+                <title>Upsell Products</title>                
+                <qty>6</qty>
+                <autoplay>true</autoplay>
+                <autoplayspeed>2000</autoplayspeed>
+                <infinite>true</infinite>
+                <slidestoshow>5</slidestoshow>
+                <slidestoscroll>1</slidestoscroll>
+            </upsellproduct_config>
+            <crosssellproduct_config>
+                <enabled>1</enabled>
+                <title>You may also like:)</title>                
+                <qty>6</qty>
+                <autoplay>true</autoplay>
+                <autoplayspeed>2000</autoplayspeed>
+                <infinite>true</infinite>
+                <slidestoshow>5</slidestoshow>
+                <slidestoscroll>1</slidestoscroll>
+            </crosssellproduct_config>
+		</featuredproduct>
+	</default>
+</config>

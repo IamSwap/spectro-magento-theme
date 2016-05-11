@@ -1,0 +1,180 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+header("Vary: User-Agent, Accept");
+?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" href="<?php echo $this->getFaviconFile(); ?>">
+
+<!-- Get Base Url -->
+<script type="text/javascript">
+	var base_url = '<?php echo $this->getUrl(); ?>';
+
+	/** Alert Messages */		
+	var removecompare_title = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/removecompare_title'); ?>';
+	var removecompare_text = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/removecompare_text'); ?>';
+	var removecompare_confirmButtonText = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/removecompare_confirmbuttontext'); ?>';
+	var removecompare_cancelButtonText = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/removecompare_cancelbuttontext'); ?>';
+	var removecompare_cancelledtext = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/removecompare_cancelledtext'); ?>';
+
+	var ajaxClearCart_title = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxclearcart_title'); ?>';
+	var ajaxClearCart_text = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxclearcart_text'); ?>';
+	var ajaxClearCart_confirmButtonText = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxclearcart_confirmbuttontext'); ?>';
+	var ajaxClearCart_cancelButtonText = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxclearcart_cancelbuttontext'); ?>';
+	var ajaxClearCart_cancelledtext = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxclearcart_cancelledtext'); ?>';
+
+	var ajaxCoupon_emptytext = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxcoupon_emptytext'); ?>';
+
+	var ajaxDeleteItem_title = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxdeleteitem_title'); ?>';
+	var ajaxDeleteItem_text = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxdeleteitem_text'); ?>';
+	var ajaxDeleteItem_confirmButtonText = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxdeleteitem_confirmbuttontext'); ?>';
+	var ajaxDeleteItem_cancelButtonText = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxdeleteitem_cancelbuttontext'); ?>';
+	var ajaxDeleteItem_cancelledtext = '<?php echo Mage::getStoreConfig('ajax/ajax_messages/ajaxdeleteitem_cancelledtext'); ?>';
+
+
+</script>
+
+<?php $_body_font = Mage::getStoreConfig('tab1/main_options/main_font') ?>
+
+<?php if ($_body_font) { ?>
+<link href='//fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $_body_font); ?>:300,400,600,700,800' rel='stylesheet' type='text/css' />
+<?php }else{ ?>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css' />
+<?php } ?>
+
+
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+	    jQuery(".lazy-load").unveil();	    
+	});
+
+</script>
+
+<!--- Theme Options Start -->
+
+<?php $_theme_color = Mage::getStoreConfig('tab1/main_options/main_color'); ?>
+<?php $_footer_bg_color = Mage::getStoreConfig('tab1/main_options/footer_bg_color'); ?>
+
+<style type="text/css">
+	
+	<?php if ($_body_font) : ?>
+		body { font-family: <?php echo $_body_font; ?>; }
+	<?php endif; ?>
+
+	<?php if($_theme_color) : ?>		
+		body { border-color: #<?php echo $_theme_color; ?> !important; }
+		.header { border-color: #<?php echo $_theme_color; ?> !important; }
+		.button {
+			background-color: #<?php echo $_theme_color; ?>;
+			border-color: #<?php echo $_theme_color; ?>;
+		}
+		.product-options-bottom .add-to-cart .btn-cart {
+			background-color: #<?php echo $_theme_color; ?> !important;
+			border-color: #<?php echo $_theme_color; ?> !important;
+		}
+		ul.add-to-links li a { color: #<?php echo $_theme_color; ?> !important; }
+		.productpage-block2 .block-icon { background-color: #<?php echo $_theme_color; ?> !important; }
+		.dropdown-menu > .active > a, 
+		.dropdown-menu > .active > a:focus, 
+		.dropdown-menu > .active > a:hover { background-color: #<?php echo $_theme_color; ?> !important; }
+		.block-login .button { background-color: #<?php echo $_theme_color; ?> !important; }
+		.products-grid .actions .btn-cart:hover { background-color: #<?php echo $_theme_color; ?> !important; }
+		.add-to-cart .btn-cart {   
+			background-color: #<?php echo $_theme_color; ?> !important;  
+			border-color: #<?php echo $_theme_color; ?> !important; 
+		}
+		
+		.cart .discount .discount-form button,
+		.btn-checkout, 
+		.btn-checkout.active, 
+		.btn-checkout:active, 
+		.btn-checkout:focus, 
+		.btn-checkout:hover, 
+		.open > .dropdown-toggle.btn-checkout,
+		.checkout-progress li.active, 
+		.checkout-progress li.active:hover, 
+		.checkout-progress li.active:focus{ 
+			background-color: #<?php echo $_theme_color; ?> !important;   
+			border-color: #<?php echo $_theme_color; ?> !important; 
+		}
+		.opc-wrapper-opc .btn-checkout span,
+		.cart-table .button:hover {	background-color: #<?php echo $_theme_color; ?>;  }
+
+	<?php endif; ?>
+
+	<?php if($_footer_bg_color) : ?>
+		.footer-container { background-color: #<?php echo $_footer_bg_color; ?> !important; }
+	<?php endif; ?>
+
+	/** Custom style **/
+
+	<?php $_css = Mage::getStoreConfig('tab1/main_options/css'); ?>
+
+	<?php if($_css): ?>
+		<?php echo $_css; ?>
+	<?php endif; ?>
+
+</style>
+
+
+<!--- Theme Options End -->
+
+
+
+
