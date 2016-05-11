@@ -1,5 +1,5 @@
-# SPECTRO Magento Theme
-SPECTRO - Responsive Magento Theme for Magento versions 1.7.x.x to 1.9.x.x
+# SPECTRO - Responsive Magento Theme
+SPECTRO is Free responsive Magento theme for Magento versions 1.7.x.x to 1.9.x.x
 
 ## Preview
 
