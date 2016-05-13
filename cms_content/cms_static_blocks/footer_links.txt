@@ -1,0 +1,64 @@
+<div class="footer-links">
+<div class="row">
+<div class="col-md-15 col-sm-15">
+<h3>Lorem Ipsum</h3>
+<ul>
+<li><a>Lorem Ipsum</a></li>
+<li><a>Rerum At</a></li>
+<li><a>Optio Soluta</a></li>
+<li><a>Fugit Voluptates</a></li>
+<li><a>Optio Sapiente</a></li>
+<li><a>Nemo Dolores</a></li>
+<li><a>Iure Adipisci</a></li>
+</ul>
+</div>
+<div class="col-md-15 col-sm-15">
+<h3>Lorem Ipsum</h3>
+<ul>
+<li><a>Lorem Ipsum</a></li>
+<li><a>Rerum At</a></li>
+<li><a>Optio Soluta</a></li>
+<li><a>Fugit Voluptates</a></li>
+<li><a>Optio Sapiente</a></li>
+<li><a>Nemo Dolores</a></li>
+<li><a>Iure Adipisci</a></li>
+</ul>
+</div>
+<div class="col-md-15 col-sm-15">
+<h3>Lorem Ipsum</h3>
+<ul>
+<li><a>Lorem Ipsum</a></li>
+<li><a>Rerum At</a></li>
+<li><a>Optio Soluta</a></li>
+<li><a>Fugit Voluptates</a></li>
+<li><a>Optio Sapiente</a></li>
+<li><a>Nemo Dolores</a></li>
+<li><a>Iure Adipisci</a></li>
+</ul>
+</div>
+<div class="col-md-15 col-sm-15">
+<h3>Lorem Ipsum</h3>
+<ul>
+<li><a>Lorem Ipsum</a></li>
+<li><a>Rerum At</a></li>
+<li><a>Optio Soluta</a></li>
+<li><a>Fugit Voluptates</a></li>
+<li><a>Optio Sapiente</a></li>
+<li><a>Nemo Dolores</a></li>
+<li><a>Iure Adipisci</a></li>
+</ul>
+</div>
+<div class="col-md-15 col-sm-15">
+<h3>Lorem Ipsum</h3>
+<ul>
+<li><a>Lorem Ipsum</a></li>
+<li><a>Rerum At</a></li>
+<li><a>Optio Soluta</a></li>
+<li><a>Fugit Voluptates</a></li>
+<li><a>Optio Sapiente</a></li>
+<li><a>Nemo Dolores</a></li>
+<li><a>Iure Adipisci</a></li>
+</ul>
+</div>
+</div>
+</div>

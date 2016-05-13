@@ -1,0 +1,18 @@
+<div class="promos">
+<div class="container">
+<div class="row">
+<div class="col-md-4">
+<h2>Free Installation</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum aliquam doloribus reprehenderit numquam eligendi sint quibusdam fuga, laboriosam quidem repellendus.</p>
+<a class="read-more" href="#">Learn more</a></div>
+<div class="col-md-4">
+<h2>Future Updates</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum aliquam doloribus reprehenderit numquam eligendi sint quibusdam fuga, laboriosam quidem repellendus.</p>
+<a class="read-more" href="#">Learn more</a></div>
+<div class="col-md-4">
+<h2>Complete Documentation</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum aliquam doloribus reprehenderit numquam eligendi sint quibusdam fuga, laboriosam quidem repellendus.</p>
+<a class="read-more" href="#">Learn more</a></div>
+</div>
+</div>
+</div>

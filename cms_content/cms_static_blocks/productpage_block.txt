@@ -1,0 +1,1 @@
+<p>This is a static CMS block edited from theme admin panel. You can insert any content (text, images, HTML) here. Lorem ipsum dit amet, consectetuer adipiscing elit porta.</p>

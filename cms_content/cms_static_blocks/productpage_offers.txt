@@ -1,0 +1,16 @@
+<div class="row">
+<div class="col-md-2 block-icon">&nbsp;</div>
+<div class="col-md-10"><a>Free Shipping on All Products Above $50.</a></div>
+</div>
+<div class="row">
+<div class="col-md-2 block-icon">&nbsp;</div>
+<div class="col-md-10"><a>Gift wrapping available on all products.</a></div>
+</div>
+<div class="row">
+<div class="col-md-2 block-icon">&nbsp;</div>
+<div class="col-md-10"><a>Call us on 123456 for advance booking.</a></div>
+</div>
+<div class="row">
+<div class="col-md-2 block-icon">&nbsp;</div>
+<div class="col-md-10"><a>Absolute no EMI on Credit card purchases..!</a></div>
+</div>

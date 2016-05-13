@@ -1,0 +1,1 @@
+<p><img alt="" src="{{media url="wysiwyg/logo.gif"}}" /></p>

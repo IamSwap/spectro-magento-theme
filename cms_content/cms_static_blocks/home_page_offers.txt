@@ -1,0 +1,5 @@
+<div class="offers row">
+<div class="col-md-6 col-sm-6"><a href="#"><img alt="" src="{{media url="wysiwyg/promo.jpg"}}" /></a></div>
+<div class="col-md-3 col-sm-3  col-xs-6"><a href="#"><img alt="" src="{{media url="wysiwyg/offer3.jpg"}}" /></a></div>
+<div class="col-md-3 col-sm-3  col-xs-6"><a href="#"><img alt="" src="{{media url="wysiwyg/offer2.jpg"}}" /></a></div>
+</div>

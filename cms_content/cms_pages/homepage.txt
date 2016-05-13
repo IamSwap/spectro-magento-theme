@@ -1,0 +1,3 @@
+<p>{{block type="catalog/product_new" name="home.catalog.product.new" alias="product_homepage" template="catalog/product/new.phtml"}}</p>
+<p>{{block type="featuredproduct/featuredproduct" name="featuredproduct" alias="product_homepage" template="catalog/product/featured.phtml"}}</p>
+<p>{{block type="cms/block" block_id="home_page_offers"}}</p>
