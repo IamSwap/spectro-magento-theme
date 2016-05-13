@@ -16,6 +16,7 @@ SPECTRO is Free responsive Magento theme for Magento versions 1.7.x.x to 1.9.x.x
 SPECTRO features powerful AJAX functionality. To enable AJAX add to cart functionaliy, you will need to enable it from Magento Admin Panel ``(CamelPanel > Ajax Configurations)``.
 
 - **Ajax Configurations**
+Here are some options in details
   1. **Enable Ajax Cart** : Use this option to enable/disable ajax functionality.
   2. **XML of update blocks** : These are predefined blocks to take advantage of AJAX functionality.
 
